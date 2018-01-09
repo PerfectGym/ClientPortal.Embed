@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="nav-title">Client Portal in Iframe</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.Registration);">Registration</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.Registration, {trainingModel: 'PayAsYouGo'});">Trial Registration</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.Classes, {clubId: '2'});">Book a class</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.PersonalTraining);">Book a personal training</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.Products);">My Products</li>
+        <li class="nav-link" onclick="CP.goTo(ClientPortal.State.Profile);">Profile</li>
+        <li class="nav-user">
+            User: <span id="user-name"></span>
+            <button id="get-user-data" onclick="getUserData()">Get user</button>
+            <button id="logout-user" onclick="logout()">Logout</button>
+            
+        </li>
+    </ul>
+    
+    <div class="page-content">
+        <div id="pg-client-portal">
+        </div>
+    </div>
+    <div style="height:100px; background: white; text-align: center; padding-top: 10px;">Page Footer</div>
+
+    <!-- I have a problem with including this liblary with webpack -->
+    <script src="./dependencies/iframeResizer.min.js"></script>
+    <link rel="stylesheet" href="./dist/ClientPortal.css"></link>
+    <link rel="stylesheet" href="./dist/style.css"></link>
+<script type="text/javascript" src="index.js"></script><script type="text/javascript" src="ClientPortal.js"></script></body>
+
+</html>

@@ -1,0 +1,41 @@
+body {
+  background: rgba(40, 125, 199, 0.25);
+  margin: 0;
+  position: relative;
+  font-family: "Helvetica", arial;
+}
+.page-content {
+  min-height: calc(20vh);
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  height: 60px;
+  display: flex;
+  overflow: hidden;
+  background: white;
+  color: #058ad7;
+  margin: 0;
+}
+.nav-link,
+.nav-user,
+.nav-title {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-link {
+  padding: 0 25px;
+  color: #ff5614;
+}
+.nav-user {
+  margin-right: 50px;
+}
+.nav-user button {
+  margin: 0 10px;
+}
+.nav-title {
+  margin-right: auto;
+  margin-left: 50px;
+  font-size: 24px;
+}

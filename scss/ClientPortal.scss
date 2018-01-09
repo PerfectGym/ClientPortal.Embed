@@ -1,0 +1,135 @@
+$cp-load-mask-offset: 187;
+$cp-load-mask-rotate-duration: 1.2s;
+$cp-load-mask-color-1: #00a4e0;
+$cp-load-mask-color-2: #fff;
+$cp-load-mask-color-3: #9d9d9c;
+$cp-load-mask-background: rgba($cp-load-mask-color-3, 0.7);
+
+@keyframes cp-load-mask-colors {
+  0% {
+    stroke: $cp-load-mask-color-1;
+  }
+
+  15% {
+    stroke: $cp-load-mask-color-1;
+  }
+
+  35% {
+    stroke: $cp-load-mask-color-2;
+  }
+
+  50% {
+    stroke: $cp-load-mask-color-2;
+  }
+
+  65% {
+    stroke: $cp-load-mask-color-2;
+  }
+
+  85% {
+    stroke: $cp-load-mask-color-1;
+  }
+
+  100% {
+    stroke: $cp-load-mask-color-1;
+  }
+}
+
+@keyframes cp-load-mask-dash {
+  0% {
+    stroke-dashoffset: $cp-load-mask-offset;
+  }
+
+  50% {
+    stroke-dashoffset: $cp-load-mask-offset/4;
+    transform: rotate(135deg);
+  }
+
+  100% {
+    stroke-dashoffset: $cp-load-mask-offset;
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes cp-load-mask-rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes cp-load-mask-toolong {
+  0% {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  100% {
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+.cp-load-mask {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 300ms ease-in, visibility 0s;
+  display: flex;
+  pointer-events: none;
+  visibility: hidden;
+  background: $cp-load-mask-background;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+
+    .cp-load-mask-toolong {
+      animation: cp-load-mask-toolong 300ms ease forwards;
+      animation-delay: 45s;
+    }
+  }
+}
+
+
+
+.cp-load-mask-toolong {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cp-load-mask-spinner {
+  animation: cp-load-mask-rotator $cp-load-mask-rotate-duration linear infinite;
+
+  circle {
+    stroke-dasharray: $cp-load-mask-offset;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: cp-load-mask-dash $cp-load-mask-rotate-duration ease-in-out infinite, cp-load-mask-colors ($cp-load-mask-rotate-duration*2) ease-in-out ($cp-load-mask-rotate-duration/2) infinite;
+  }
+}
+
+// thie element overflows body element
+// at least on demo
+.seamless-fallback em {
+  padding: 0 !important;
+}
+
+
+.cp-modal-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: $cp-load-mask-background;
+}
