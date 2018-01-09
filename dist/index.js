@@ -285,7 +285,7 @@ var ClientPortal = /** @class */ (function () {
         var iframeElement = document.createElement("iframe");
         var language = options && options.language ? "&lang=" + options.language : "";
         // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
-        var isMobile = window.innerWidth < 600 || window.innerHeight < 600;
+        var isMobile = window.innerWidth < 500 || window.innerHeight < 500;
         var mode = isMobile ? '?mode=mobile' : '?mode=desktop';
         var url = options.url;
         url = url[url.length - 1] === "/" ? url : url + "/";
@@ -382,7 +382,7 @@ window.onload = function () {
     var userInfo;
     var options = {
         language: "en",
-        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2",
+        url: "https://presentation.perfectgym.pl/ClientPortal2/#/Login",
         defaultState: __WEBPACK_IMPORTED_MODULE_0__ClientPortal__["ClientPortal"].State.Registration,
         defaultStateParams: { trainingModel: 'PayAsYouGo' },
         onConnect: function () {

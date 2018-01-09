@@ -285,7 +285,7 @@ var ClientPortal = /** @class */ (function () {
         var iframeElement = document.createElement("iframe");
         var language = options && options.language ? "&lang=" + options.language : "";
         // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
-        var isMobile = window.innerWidth < 600 || window.innerHeight < 600;
+        var isMobile = window.innerWidth < 500 || window.innerHeight < 500;
         var mode = isMobile ? '?mode=mobile' : '?mode=desktop';
         var url = options.url;
         url = url[url.length - 1] === "/" ? url : url + "/";
