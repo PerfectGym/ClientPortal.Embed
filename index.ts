@@ -8,7 +8,7 @@ window.onload = function () {
     let userInfo: any;
     let options: ClientPortalOptions = {
         language: "en",
-        url: "http://pure.waw-lukaszko.creadhoc.local/ClientPortal2",
+        url: "https://demo.perfectgym.pl/ClientPortal2/",
         defaultState: ClientPortal.State.Registration,
         defaultStateParams: {trainingModel: 'PayAsYouGo'},
         onConnect() {

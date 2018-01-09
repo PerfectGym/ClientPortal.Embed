@@ -236,11 +236,6 @@ export class ClientPortal {
                 showLoadMask();
         }
 
-        // seamless(this._element, {
-        //   showLoadingIndicator: false,
-        //   fallback: false
-        // });
-
         let iframe = iframeResize({
             checkOrigin: false,
             warningTimeout: 15000
