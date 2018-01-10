@@ -1,5 +1,5 @@
 body {
-  background: rgba(40, 125, 199, 0.25);
+  background: #d7e1ea;
   margin: 0;
   position: relative;
   font-family: "Helvetica", arial;
@@ -10,12 +10,15 @@ body {
   flex-direction: column;
 }
 .nav {
-  height: 60px;
+  height: 50px;
   display: flex;
   overflow: hidden;
   background: white;
   color: #058ad7;
   margin: 0;
+  padding: 0 50px;
+  box-sizing: border-box;
+  margin-bottom: 1px;
 }
 .nav-link,
 .nav-user,
@@ -25,8 +28,17 @@ body {
   align-items: center;
 }
 .nav-link {
-  padding: 0 25px;
-  color: #ff5614;
+  margin: 0 40px;
+  color: #058ad7;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  box-sizing: border-box;
+  transition: border-color .2s;
+  cursor: pointer;
+  font-size: 14px;
+}
+.nav-link:hover {
+  border-color: #ff5614;
 }
 .nav-user {
   margin-right: 50px;
@@ -36,6 +48,76 @@ body {
 }
 .nav-title {
   margin-right: auto;
-  margin-left: 50px;
   font-size: 24px;
+  background: transparent url(images/logo-perfectgym-dark.svg) no-repeat center center;
+  background-size: 143px;
+  width: 143px;
+}
+
+.nav a {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  color: #587286;
+  display: flex;
+  align-items: center;
+}
+
+.nav .nav-link {
+  display: none;
+}
+
+.nav .not-logged-state {
+  display: flex;
+}
+
+.nav.user-logged-in .not-logged-state {
+  display: none;
+}
+
+.nav.user-logged-in .logged-state {
+  display: flex;
+}
+
+.nav-button {    
+  margin-left: 40px;
+  background: white;
+  border: 1px solid rgba(88, 114, 134, 0.4);
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #058ad7;
+  cursor: pointer;
+  transition: color .1s, border-color .1s;
+  height: 30px;
+}
+
+.nav-button:hover {
+  color: #ff5614;
+  border-color: rgba(5, 138, 215, 0.7);
+}
+
+.nav-link.nav-github {
+  color: #587286;
+  margin-left: auto;
+  display: flex;
+}
+
+.nav-github:hover {
+  border-color: #587286;
+}
+
+.nav-github img {
+  padding-left: 5px;
+  width: 60px;
+  
+}
+
+#pg-client-portal {
+  min-height: 100vh;
+}
+
+#pg-client-portal > iframe {
+  min-height: calc(100vh - 50px);
 }

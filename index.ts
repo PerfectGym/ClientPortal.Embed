@@ -7,21 +7,24 @@ import {ClientPortal, ClientPortalOptions, ClientPortalUserInfo} from "./ClientP
 window.onload = function () {
     let userInfo: any;
     let options: ClientPortalOptions = {
-        language: "en",
-        url: "https://demo.perfectgym.pl/ClientPortal2/",
-        defaultState: ClientPortal.State.Registration,
-        defaultStateParams: {trainingModel: 'PayAsYouGo'},
+        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2",
         onConnect() {
-            console.info('Connected to Client Portal')
+            console.info('Connected to Client Portal');
+
+            (window as any).getUserData();
         },
         onStateChangeSuccess(data) {
             console.log('state change', data);
         },
         onUserLoggedIn(data) {
-            console.log('logged in', data)
+            var navigationElement = document.getElementById('page-navigation');
+
+            navigationElement.classList.add('user-logged-in');
         },
         onUserLoggedOut(data) {
-            console.log('logged out', data)
+            var navigationElement = document.getElementById('page-navigation');
+
+            navigationElement.classList.remove('user-logged-in');
         }
     };
 
@@ -38,19 +41,15 @@ window.onload = function () {
     (window as any).getUserData = () => {
         CP.isUserLoggedIn()
             .then((data: any) => {
+                console.log(data)
                 var user: ClientPortalUserInfo = data.user;
-                var userInfoElement = document.getElementById('user-name');
 
-                userInfo = user;
-
-                if (userInfoElement) {
-                    userInfoElement.innerText = user.Email;
-                }
-            })
-            .catch(() => {
-                var userInfoElement = document.getElementById('user-name');
-                if (userInfoElement) {
-                    userInfoElement.innerText = "User not logged in";
+                var navigationElement = document.getElementById('page-navigation');
+                
+                if (data.isAuthenticated) {
+                    navigationElement.classList.add('.user-logged-inXXX');
+                } else {
+                    navigationElement.classList.remove('.user-logged-inXXX');
                 }
             });
 

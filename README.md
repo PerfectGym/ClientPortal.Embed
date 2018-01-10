@@ -114,7 +114,7 @@ State params from with which Client Portal will be loaded.
 ### language
 
     type: string // Laguage code standarized by ISO 639-1
-    default: 'en'
+    default: '' // default Client Portal language
 
 For list of avaliable languages in your company please contact PerfectGym support.
 

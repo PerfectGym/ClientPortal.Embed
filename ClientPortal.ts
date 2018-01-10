@@ -32,7 +32,7 @@ export interface ClientPortalOptions {
     url: string;
 
     /**
-     * State from which client portal will be loaded.
+     * First state showed to user after load. Unauthenticated users are redirected to ClientPortal.State.Login.
      */
     defaultState?: string;
 
@@ -58,7 +58,7 @@ export interface ClientPortalOptions {
     onConnect?(): void;
 
     /**
-     * Decides whether to show Client Portal load mask.
+     * Decides whether to show default Client Portal load mask.
      */
     hideLoadMask?: boolean;
 
@@ -68,17 +68,19 @@ export interface ClientPortalOptions {
     hideInitLoadMask?: boolean;
 
     /**
-     * Callback fired when Client Portal should show load mask.
+     * Callback fired when Client Portal normally shows load mask.
      */
     onShowLoadMask?(): void;
 
     /**
-     * Callback fired when Client Portal should hide load mask.
+     * Callback fired when Client Portal normally hides load mask.
      */
     onHideLoadMask?(): void;
 
     /**
-     * Decides whether to show modal overlay layer on header and footer.
+     * Decides whether to show modal overlay layer on top and bottom of the iframe. 
+     * Overlay covers elements outside of iframe on parent element to focus user attention
+     * on popups and other elements opened in Client Portal.
      */
     hideModalOverlay?: boolean;
 
@@ -125,7 +127,7 @@ export interface ClientPortalOptions {
      * Callback fired when dropdown closes on mobile mode.
      */
     onMobileDropdownClose?(): void;
-
+    
     /**
      * Callback on content scroll.
      * 
@@ -365,7 +367,7 @@ export class ClientPortal {
                 break;
             case 'scrollWindow':
                 if (options.onContentScroll) {
-                    options.onContentScroll(data);
+                    options.onContentScroll(data + this._getIframeTopOffset());
                 } else {
                     window.scroll({ top: data + this._getIframeTopOffset(), left: 0, behavior: 'smooth' });
                 }
