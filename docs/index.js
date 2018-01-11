@@ -1,28 +1,28 @@
 
 /* THIS IS DEMO */
 
-import {ClientPortal, ClientPortalOptions, ClientPortalUserInfo} from "./ClientPortal";
+import {ClientPortal, ClientPortalOptions} from "ClientPortal";
 
 
 window.onload = function () {
-    let userInfo: any;
-    let options: ClientPortalOptions = {
+    let userInfo;
+    let options = {
         url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2",
         onConnect() {
             console.info('Connected to Client Portal');
 
-            (window as any).getUserData();
+            getUserData();
         },
         onStateChangeSuccess(data) {
             console.log('state change', data);
         },
         onUserLoggedIn(data) {
-            var navigationElement = document.getElementById('page-navigation');
+            var navigationElement = document.getElementById('page-header');
 
             navigationElement.classList.add('user-logged-in');
         },
         onUserLoggedOut(data) {
-            var navigationElement = document.getElementById('page-navigation');
+            var navigationElement = document.getElementById('page-header');
 
             navigationElement.classList.remove('user-logged-in');
         }
@@ -30,21 +30,21 @@ window.onload = function () {
 
     let element = document.getElementById('pg-client-portal');
 
-    let CP:ClientPortal;
+    let CP;
 
     if (element instanceof HTMLElement) {
       CP = new ClientPortal(element, options);
-      (window as any).CP = CP;
-      (window as any).ClientPortal = ClientPortal;
+      window.CP = CP;
+      window.ClientPortal = ClientPortal;
     }
 
-    (window as any).getUserData = () => {
+    getUserData = () => {
         CP.isUserLoggedIn()
-            .then((data: any) => {
+            .then((data) => {
                 console.log(data)
-                var user: ClientPortalUserInfo = data.user;
+                var user = data.user;
 
-                var navigationElement = document.getElementById('page-navigation');
+                var navigationElement = document.getElementById('page-header');
                 
                 if (data.isAuthenticated) {
                     navigationElement.classList.add('.user-logged-inXXX');
@@ -55,7 +55,7 @@ window.onload = function () {
 
     }
 
-    (window as any).logout = () => {
+    logout = () => {
         CP.logout()
             .then(() => {
                 var userInfoElement = document.getElementById('user-name');

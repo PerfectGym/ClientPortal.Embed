@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal Integration</title>
+</head>
+
+<body>
+    <div id="page-header" class="header">
+        <div class="header-left">
+            <a href="https://github.com/PerfectGym/ClientPortal.Embed">
+                <span>View on GitHub</span>
+            </a>
+        </div>
+        <div class="header-center">
+                <div class="nav-link not-logged-state" onclick="CP.goTo(ClientPortal.State.Login);">Login</div>
+                <div class="nav-link logged-state" onclick="CP.goTo(ClientPortal.State.Classes, {clubId: '2'});">Book a class</div>
+                <div class="nav-link logged-state" onclick="CP.goTo(ClientPortal.State.PersonalTraining);">Book a personal training</div>
+                <div class="nav-title"><a href="http://www.perfectgym.com/"></a></div>
+                <div class="nav-link not-logged-state" onclick="CP.goTo(ClientPortal.State.Registration);">Registration</div>
+                <div class="nav-link logged-state" onclick="CP.goTo(ClientPortal.State.Products);">My Products</div>
+                <div class="nav-link logged-state" onclick="CP.goTo(ClientPortal.State.Profile);">Profile</div>
+        </div>
+        <div class="header-right">
+                <button id="logout-user" class="nav-button" onclick="logout()">Logout</button>
+        </div>
+    </div>
+    
+    <div class="page-content">
+        <div id="pg-client-portal">
+        </div>
+    </div>
+
+    <div style="height:100px; background: white; text-align: center; padding-top: 10px;">Page Footer</div>
+
+    <!-- I have a problem with including this liblary with webpack -->
+    <script src="./dependencies/iframeResizer.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="../clientPortal.js"></script>
+    <link rel="stylesheet" href="../dist/ClientPortal.css"></link>
+    <link rel="stylesheet" href="./style.css"></link>
+</body>
+
+</html>

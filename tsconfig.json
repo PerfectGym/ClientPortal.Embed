@@ -6,18 +6,18 @@
       "noEmitOnError": true,
       "removeComments": false,
       "lib": ["es2015", "dom"],
-      "allowJs": true,
       "experimentalDecorators": true,
       "allowSyntheticDefaultImports": true,
       "sourceMap": false,
       "moduleResolution": "node",
       "target": "es5",
+      "declaration": true,
       "typeRoots": [
         "./src/definitions",
         "./typings/@types",
         "./node_modules/@types"
       ],
-      "outDir": "js",
+      "outDir": "dist",
       "baseUrl": ".",
       "paths": {
         "app/*": [ "src/Modules/*" ]

@@ -11,6 +11,8 @@ This liblary is the best way for your company to embed PerfectGym's Client Porta
 * Callbacks on authentication state changes.
 * Callbacks on changing states.
 
+[See demo](https://perfectgym.github.io/ClientPortal.Embed/)
+
 ## Installation:
 
 Package can be installed via NPM
@@ -36,8 +38,6 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 ```
 
 # API
-
-## ClientPortal internal objects.
 
 ### ClientPortal.State
 
@@ -225,6 +225,11 @@ This function is used to override default liblary scroll behaviour. `scrollTop` 
 Metods can be used on embeded Client Portal object. All methods returns promise which is resolved on response from server.
 
 ### goTo(state)
+
+    params: {
+        state: ClientPortal.State
+    }
+    returns: Promise<>
 
 Navigates through ClientPortal. States are held in 
 `ClientPortal.State` object. 

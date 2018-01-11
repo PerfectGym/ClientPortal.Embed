@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "homepage": "https://github.com/davidjbradshaw/iframe-resizer",
   "description": "Liblary for embeding PerfectGym's Client Portal on your page",
-  "main": "index.js",
+  "main": "dist/ClientPortal.common.min.js",
   "github": "https://github.com/PerfectGym/ClientPortal.Embed",
+  "types": "dist/ClientPortal.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --progress --colors",
+    "build:umd": "webpack --env.WEBPACK_BUILD_CONFIG=umd --config webpack.config.js --progress --colors",
     "dev-server": "webpack-dev-server --progress --colors"
   },
   "author": "",
@@ -17,16 +19,12 @@
     "less-loader": "^4.0.5",
     "webpack": "^3.5.5",
     "@types/node": "^8.0.24",
-    "@types/seamless": "^0.0.2",
     "awesome-typescript-loader": "^3.2.3",
     "css-loader": "^0.28.7",
     "html-loader": "^0.5.1",
-    "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.2",
-    "resolve-url-loader": "^2.1.0",
     "style-loader": "^0.18.2",
     "typescript": "^2.4.2",
-    "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {

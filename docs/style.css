@@ -27,6 +27,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .nav-link {
   margin: 0 40px;
   color: #058ad7;
@@ -64,7 +65,8 @@ body {
   align-items: center;
 }
 
-.nav .nav-link {
+.nav .nav-link,
+.nav .nav-button-link {
   display: none;
 }
 
@@ -78,6 +80,11 @@ body {
 
 .nav.user-logged-in .logged-state {
   display: flex;
+}
+
+.nav-button-link {
+  list-style: none;
+  margin-top: 9px;
 }
 
 .nav-button {    
@@ -106,16 +113,6 @@ body {
 
 .nav-github:hover {
   border-color: #587286;
-}
-
-.nav-github img {
-  padding-left: 5px;
-  width: 60px;
-  
-}
-
-#pg-client-portal {
-  min-height: 100vh;
 }
 
 #pg-client-portal > iframe {

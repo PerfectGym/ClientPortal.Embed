@@ -1,4 +1,6 @@
 
+import "src/ClientPortal.less"
+
 export interface ClientPortalStateInfo {
     auth: boolean,
     name: string,
