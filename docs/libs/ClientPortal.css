@@ -1,0 +1,127 @@
+@keyframes cp-load-mask-colors {
+  0% {
+    stroke: #00a4e0;
+  }
+
+  15% {
+    stroke: #00a4e0;
+  }
+
+  35% {
+    stroke: white;
+  }
+
+  50% {
+    stroke: white;
+  }
+
+  65% {
+    stroke: white;
+  }
+
+  85% {
+    stroke: #00a4e0;
+  }
+
+  100% {
+    stroke: #00a4e0;
+  }
+}
+
+@keyframes cp-load-mask-dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes cp-load-mask-rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes cp-load-mask-toolong {
+  0% {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  100% {
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+.cp-load-mask {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 300ms ease-in, visibility 0s;
+  display: flex;
+  pointer-events: none;
+  visibility: hidden;
+  background: rgba(157, 157, 156, 0.7);
+}
+
+.cp-load-mask.is-visible {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+.cp-load-mask.is-visible .cp-load-mask-toolong {
+  animation: cp-load-mask-toolong 300ms ease forwards;
+  animation-delay: 45s;
+}
+
+.cp-load-mask-toolong {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cp-load-mask-spinner {
+  animation: cp-load-mask-rotator 1.2s linear infinite;
+}
+
+.cp-load-mask-spinner circle {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: cp-load-mask-dash 1.2s ease-in-out infinite, cp-load-mask-colors 2.4s ease-in-out 0.6s infinite;
+}
+
+.seamless-fallback em {
+  padding: 0 !important;
+}
+
+.cp-iframe-wrapper {
+  position: relative;
+}
+
+.cp-modal-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
