@@ -1,20 +1,15 @@
 
-/* THIS IS DEMO */
-
-import {ClientPortal, ClientPortalOptions} from "ClientPortal";
-
+/* THIS IS SIMPLE DEMO */
 
 window.onload = function () {
-    let userInfo;
-    let options = {
+    var ClientPortal = PerfectGym.ClientPortal;
+
+    var options = {
         url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2",
         onConnect() {
             console.info('Connected to Client Portal');
 
-            getUserData();
-        },
-        onStateChangeSuccess(data) {
-            console.log('state change', data);
+            window.getUserData();
         },
         onUserLoggedIn(data) {
             var navigationElement = document.getElementById('page-header');
@@ -28,42 +23,37 @@ window.onload = function () {
         }
     };
 
-    let element = document.getElementById('pg-client-portal');
-
-    let CP;
+    var element = document.getElementById('pg-client-portal');
 
     if (element instanceof HTMLElement) {
-      CP = new ClientPortal(element, options);
-      window.CP = CP;
-      window.ClientPortal = ClientPortal;
+      var CP = new ClientPortal(element, options);
     }
 
-    getUserData = () => {
+    window.getUserData = () => {
         CP.isUserLoggedIn()
             .then((data) => {
-                console.log(data)
-                var user = data.user;
-
                 var navigationElement = document.getElementById('page-header');
                 
                 if (data.isAuthenticated) {
-                    navigationElement.classList.add('.user-logged-inXXX');
+                    navigationElement.classList.add('.user-logged-in');
                 } else {
-                    navigationElement.classList.remove('.user-logged-inXXX');
+                    navigationElement.classList.remove('.user-logged-in');
                 }
             });
 
     }
 
-    logout = () => {
+    window.logout = () => {
         CP.logout()
             .then(() => {
-                var userInfoElement = document.getElementById('user-name');
-
-                if (userInfoElement) {
-                    userInfoElement.innerText = "";
-                }
+                var navigationElement = document.getElementById('page-header');
+                
+                navigationElement.classList.remove('.user-logged-in');
             })
+    }
+
+    window.goTo = (stateName, params) => {
+        CP.goTo(ClientPortal.State[stateName], params)
     }
 }
 

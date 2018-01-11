@@ -5,11 +5,15 @@ body {
   font-family: "Helvetica", arial;
 }
 .page-content {
-  min-height: calc(20vh);
   display: flex;
   flex-direction: column;
+  padding-bottom: 40px;
+  padding-top: 50px;
 }
-.nav {
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   height: 50px;
   display: flex;
   overflow: hidden;
@@ -19,75 +23,84 @@ body {
   padding: 0 50px;
   box-sizing: border-box;
   margin-bottom: 1px;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,.12)
 }
-.nav-link,
-.nav-user,
-.nav-title {
-  height: 100%;
+
+.header-left,
+.header-right {
+  flex: 1 0 15%;
+}
+
+.header-left,
+.header-left a {
   display: flex;
   align-items: center;
+}
+
+.header-left img {
+  height: 25px;
+}
+
+.header-left img + img {
+  margin-left: 7px;
+}
+
+.header-right {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 70%;
 }
 
 .nav-link {
-  margin: 0 40px;
-  color: #058ad7;
+  flex: 1 0 150px;
+  justify-content: center;
+  text-align: center;
+  color: #587286;
   font-weight: bold;
-  border-bottom: 2px solid transparent;
   box-sizing: border-box;
-  transition: border-color .2s;
+  transition: color .2s;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  margin: 0 20px;
+  user-select: none;
 }
+
 .nav-link:hover {
-  border-color: #ff5614;
+  color: #058ad7;
 }
-.nav-user {
-  margin-right: 50px;
-}
-.nav-user button {
-  margin: 0 10px;
-}
-.nav-title {
-  margin-right: auto;
-  font-size: 24px;
+
+.nav-logo {
   background: transparent url(images/logo-perfectgym-dark.svg) no-repeat center center;
   background-size: 143px;
-  width: 143px;
-}
-
-.nav a {
-  width: 100%;
+  flex: 0 0 150px;
   height: 100%;
-  cursor: pointer;
-  text-decoration: none;
-  color: #587286;
-  display: flex;
-  align-items: center;
+  margin: 0 70px;
 }
 
-.nav .nav-link,
-.nav .nav-button-link {
+#page-header .logged-state {
   display: none;
 }
 
-.nav .not-logged-state {
+#page-header .not-logged-state {
   display: flex;
 }
 
-.nav.user-logged-in .not-logged-state {
+#page-header.user-logged-in .logged-state {
+  display: flex;
+}
+
+#page-header.user-logged-in .not-logged-state {
   display: none;
 }
 
-.nav.user-logged-in .logged-state {
-  display: flex;
-}
-
-.nav-button-link {
-  list-style: none;
-  margin-top: 9px;
-}
-
-.nav-button {    
+.header-button {    
   margin-left: 40px;
   background: white;
   border: 1px solid rgba(88, 114, 134, 0.4);
@@ -100,21 +113,21 @@ body {
   height: 30px;
 }
 
-.nav-button:hover {
+.header-button:hover {
   color: #ff5614;
   border-color: rgba(5, 138, 215, 0.7);
 }
 
-.nav-link.nav-github {
-  color: #587286;
-  margin-left: auto;
-  display: flex;
-}
-
-.nav-github:hover {
-  border-color: #587286;
-}
-
 #pg-client-portal > iframe {
   min-height: calc(100vh - 50px);
+}
+
+.page-footer {
+  height: 50px;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding: 0 50px;
+  color: #587286;
 }

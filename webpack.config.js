@@ -31,20 +31,20 @@ module.exports = env => {
         path: path.resolve('./dist'),
         filename: 'ClientPortal.js',
         sourceMapFilename: 'ClientPortal.js.map',
-        library: 'PerfectGym.ClientPortal',
-    }
+        library: 'PerfectGym',
+    };
     
-    var buildConfig = env.WEBPACK_BUILD_CONFIG;
+    var buildConfig = env && env.WEBPACK_BUILD_CONFIG;
     
     if (buildConfig === "umd") {
         var buildOutput = {
             path: path.resolve('./dist'),
             filename: 'ClientPortal.common.js',
             sourceMapFilename: 'ClientPortal.common.js.map',
-            library: 'perfect-gym-client-portal',
+            library: 'perfectgym-client-portal',
             libraryTarget: 'umd',
             umdNamedDefine: true
-        }
+        };
     }
 
     return {
