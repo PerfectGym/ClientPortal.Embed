@@ -1,8 +1,8 @@
 
 
 # Perfect Gym Client Portal Embed 
-[![NPM version](https://badge.fury.io/js/perfectgym-client-portal.svg)](http://badge.fury.io/js/iframe-resizer)
-[![NPM Downloads](https://img.shields.io/npm/dt/perfectgym-client-portal.svg)](https://www.npmjs.com/package/iframe-resizer)
+[![NPM version](https://badge.fury.io/js/perfectgym-client-portal.svg)](http://badge.fury.io/js/perfectgym-client-portal)
+[![NPM Downloads](https://img.shields.io/npm/dt/perfectgym-client-portal.svg)](https://www.npmjs.com/package/perfectgym-client-portal)
 
 This liblary is the best way for your company to embed PerfectGym's Client Portal on your site. It assumes that when embeding you want to use your own navigation. It provides a range of features which covers intergration needs:
 
@@ -19,7 +19,7 @@ Package can be installed via NPM.
 
 `npm install perfectgym-client-portal`
 
-It requires having installed in your code [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer).
+It requires [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer) as dependency.
 
 ## Getting started
 The simplest way of embeding Client Portal on your site:
@@ -36,6 +36,8 @@ var options = {
 var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 ```
+
+[Click to find demo code](https://github.com/PerfectGym/ClientPortal.Embed/tree/master/docs) which presents the simplest possible embeding of Client Portal at your site.
 
 # API
 
