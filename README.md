@@ -15,9 +15,11 @@ This liblary is the best way for your company to embed PerfectGym's Client Porta
 
 ## Installation:
 
-Package can be installed via NPM
+Package can be installed via NPM.
 
 `npm install perfectgym-client-portal`
+
+It requires having installed in your code [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer).
 
 ## Getting started
 The simplest way of embeding Client Portal on your site:
