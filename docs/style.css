@@ -84,6 +84,12 @@ body {
   margin: 0 70px;
 }
 
+.nav-logo a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 #page-header .logged-state {
   display: none;
 }
@@ -130,4 +136,54 @@ body {
   padding-top: 10px;
   padding: 0 50px;
   color: #587286;
+}
+
+.header-mobile {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-mobile img {
+  height: 20px;
+}
+
+.header-mobile img + img {
+  margin-left: 5px;
+}
+
+.header-mobile .nav-logo {
+  margin: 0 auto;
+}
+
+.header-mobile .github-logo,
+.header-mobile .burger {
+  flex: 0 0 100px;
+}
+
+.header-mobile .github-logo {
+  text-align: right;
+}
+
+@media screen and (max-width: 1300px) {
+    .header {
+      padding: 0 25px;
+    } 
+
+   .header-center {
+     display: none;
+   }
+
+   .header-left {
+     display: none;
+   }
+
+   .header-right {
+     display: none;
+   }
+
+   .header-mobile {
+     display: flex;
+   }
 }
