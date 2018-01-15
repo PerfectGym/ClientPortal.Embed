@@ -29,8 +29,8 @@ module.exports = env => {
 
     var buildOutput = {
         path: path.resolve('./dist'),
-        filename: 'ClientPortal.js',
-        sourceMapFilename: 'ClientPortal.js.map',
+        filename: '[name].js',
+        sourceMapFilename: '[name].js.map',
         library: 'PerfectGym',
     };
     
@@ -39,8 +39,8 @@ module.exports = env => {
     if (buildConfig === "umd") {
         var buildOutput = {
             path: path.resolve('./dist'),
-            filename: 'ClientPortal.common.js',
-            sourceMapFilename: 'ClientPortal.common.js.map',
+            filename: '[name].common.js',
+            sourceMapFilename: '[name].common.js.map',
             library: 'perfectgym-client-portal',
             libraryTarget: 'umd',
             umdNamedDefine: true
@@ -50,7 +50,8 @@ module.exports = env => {
     return {
         target: 'web',
         entry: {
-            ClientPortal: './src/ClientPortal.ts'
+            'ClientPortal': './src/ClientPortal.ts',
+            'ClientPortal.min': './src/ClientPortal.ts'
         },
         output: buildOutput,
         resolve: {
@@ -83,7 +84,7 @@ module.exports = env => {
             }),
             new typescript.CheckerPlugin(),
             new UglifyJsPlugin({
-                minimize: true,
+                include: /\.min\.js$/,
                 compress: { warnings: false },
                 output: { comments: false },
             })

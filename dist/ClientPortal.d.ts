@@ -118,6 +118,7 @@ export declare class ClientPortal {
     private _modalOverlaySelector;
     private _promiseResolveMap;
     private _wasConnectedBefore;
+    private _companyUrl;
     static readonly State: {
         Login: string;
         Registration: string;
@@ -149,6 +150,7 @@ export declare class ClientPortal {
     private _createIframe(elementWrapper, options);
     private _serializeParams(paramsObject);
     private _sendData(action, data?);
+    private _setCookieOnParent();
     goTo(state: string, params?: Object): Promise<{}>;
     logout(): Promise<{}>;
     changeLanguage(languageCode: string): Promise<{}>;

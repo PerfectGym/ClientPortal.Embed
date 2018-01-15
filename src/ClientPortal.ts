@@ -186,6 +186,8 @@ export class ClientPortal {
 
     private _wasConnectedBefore:boolean = false;
 
+    private _companyUrl: string;
+
     public static readonly State = {
         Login: 'Auth.Login',
         Registration: 'Registration',
@@ -212,7 +214,7 @@ export class ClientPortal {
             throw new Error("url is not defined");
 
         this._createIframe(wrapper, options);
-
+        
         window.addEventListener('message', (event: MessageEvent) => {
             if (!event.data)
                 return;
@@ -374,6 +376,9 @@ export class ClientPortal {
                     window.scroll({ top: data + this._getIframeTopOffset(), left: 0, behavior: 'smooth' });
                 }
                 break;
+            case 'setCookieOnParent':
+                this._setCookieOnParent();
+                break;
         }
 
         return result;
@@ -423,9 +428,11 @@ export class ClientPortal {
        // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
         let isMobile = window.innerWidth < 500 || window.innerHeight < 500;
         let mode = isMobile ? '?mode=mobile' : '?mode=desktop';
+        
         let url = (options as any).url;
-
         url = url[url.length-1] === "/" ? url : url + "/";
+        this._companyUrl = url;
+
         let defaultState = (options as any).defaultState || "Profile";
 
         let params = '?' + this._serializeParams(options.defaultStateParams) || "";
@@ -473,6 +480,29 @@ export class ClientPortal {
             this._promiseResolveMap[id] = resolve;
 
         })
+    }
+
+    private _setCookieOnParent() {
+        var url = this._companyUrl + "EmbedMode/SetCookie";
+        
+        var onClickAction =  "removeInput();window.open('" + url + "', '_blank');";
+
+        var cookieInputEl = document.createElement("input");
+        cookieInputEl.setAttribute("onclick", onClickAction);
+        cookieInputEl.style.position = "absolute";
+        cookieInputEl.style.top = "0";
+        cookieInputEl.style.bottom = "0";
+        cookieInputEl.style.left = "0";
+        cookieInputEl.style.right = "0";
+        cookieInputEl.style.width = "100%";
+        cookieInputEl.style.opacity = "0.000001";
+
+        this._elementWrapper.appendChild(cookieInputEl);
+        
+        (window as any).removeInput = () => {
+            console.log(this._elementWrapper, cookieInputEl)
+            this._elementWrapper.removeChild(cookieInputEl);
+        }
     }
 
     public goTo(state: string, params?: Object) {

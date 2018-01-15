@@ -8,7 +8,7 @@
   "types": "dist/ClientPortal.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js --progress --colors",
+    "build": "webpack --config webpack.config.js --progress --colors && cp ./dist/ClientPortal.min.js ./docs/libs/ && cp ./dist/ClientPortal.css ./docs/libs/",
     "build:umd": "webpack --env.WEBPACK_BUILD_CONFIG=umd --config webpack.config.js --progress --colors",
     "dev-server": "webpack-dev-server --progress --colors"
   },
