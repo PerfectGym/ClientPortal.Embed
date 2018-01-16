@@ -1,5 +1,5 @@
 {
-  "name": "perfectgym-client-portal",
+  "name": "@perfectgym/client-portal",
   "version": "1.1.0",
   "homepage": "https://github.com/davidjbradshaw/iframe-resizer",
   "description": "Liblary for embeding PerfectGym's Client Portal on your page",
