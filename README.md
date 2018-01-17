@@ -17,8 +17,8 @@ This liblary is the best way for your company to embed PerfectGym's Client Porta
 
 ## Embeding tips
 
-Embeded Client Portal has transparent background, looks best with grey/blurred image background.
-To maintain best responsivenes Embeded Client Portal width should be close to window.innerWidth. 
+Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
+To maintain best responsivenes Embeded Client Portal width value should be close to window.innerWidth. 
 
 ## The simplest way of embeding Client Portal on your site
 
@@ -87,11 +87,11 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 # API
 
-API sections cover:
+API section covers:
 
-1. [Constructior options](##Options)
-2. [Methods](##Methods)
-3. [Data types](##Clent-Portal-types)
+1. Constructior options
+2. Methods
+3. Data types
 
 ## Options
 
@@ -265,8 +265,9 @@ Logouts user.
  * type: function(languageCode: string)
  * returns: Promise<>
 
-Laguage code is standarized by ISO 639-1.
-Changes client portal language. For list of avaliable languages please contact PerfectGym support.
+Changes client portal language.
+
+Laguage code is a two letters string standarized by ISO 639-1.
 
 ### isUserLoggedIn
 
