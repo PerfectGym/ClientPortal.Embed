@@ -276,7 +276,7 @@ Laguage code is a two letters string standarized by ISO 639-1.
 
 Returns info if user is authenticated.
 
-### getElement() 
+### getElement
     
 * type: function()
 * returns: Promise<element: HTMLIFrameElement>
