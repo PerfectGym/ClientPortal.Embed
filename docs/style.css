@@ -8,13 +8,13 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 40px;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 .header {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  height: 50px;
+  height: 60px;
   display: flex;
   overflow: hidden;
   background: white;
@@ -186,4 +186,29 @@ body {
    .header-mobile {
      display: flex;
    }
+}
+
+.mobile-list {
+    transition: transform 0.3s ease;
+    background-color: #afc1d0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 61px;
+    bottom: 0;
+    transform: none;
+}
+.mobile-list .nav-link {
+    background-color: #FFF;
+    margin: 0 0 1px 0;
+    padding: 15px 0;
+}
+
+.burger img {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    transform: translateX(-100%);
 }
