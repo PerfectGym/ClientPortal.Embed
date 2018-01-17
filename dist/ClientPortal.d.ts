@@ -21,6 +21,17 @@ export interface ClientPortalAuthInfo {
     isAuthenticated: boolean;
     user: ClientPortalUserInfo;
 }
+export interface LoginViewOptions {
+    navbar?: boolean;
+    logo?: boolean;
+}
+export interface AfterLoginOptions {
+    navbar?: boolean;
+    logo?: boolean;
+}
+export interface RegistrationOptions {
+    logo?: boolean;
+}
 export interface ClientPortalOptions {
     /**
      * Client Portal application url.
@@ -110,6 +121,18 @@ export interface ClientPortalOptions {
      * @returns ScrollTop value which normally would be used to scroll window object.
      */
     onContentScroll?(scrollTop: number): void;
+    /**
+     * login/register view.
+     */
+    loginViews?: LoginViewOptions;
+    /**
+     * Views visible after user login options.
+     */
+    afterLoginViews?: AfterLoginOptions;
+    /**
+     * Registration options.
+     */
+    registrationViews?: RegistrationOptions;
 }
 export declare class ClientPortal {
     private _element;

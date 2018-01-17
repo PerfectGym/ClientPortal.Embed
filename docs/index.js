@@ -5,12 +5,23 @@ window.onload = function () {
     var ClientPortal = PerfectGym.ClientPortal;
 
     var options = {
-        url: "https://presentation.perfectgym.pl/ClientPortal2/",
+        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2/",
+        loginViews: {
+            navbar: false
+        },
+        afterLoginViews: {
+            navbar: false
+        },
+        registrationViews: {
+            logo: false
+        },
+        
         onConnect() {
             console.info('Connected to Client Portal');
 
             window.getUserData();
         },
+
         onUserLoggedIn(data) {
             var navigationElement = document.getElementById('page-header');
 

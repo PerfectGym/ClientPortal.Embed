@@ -27,6 +27,20 @@ export interface ClientPortalAuthInfo {
     user: ClientPortalUserInfo;
 }
 
+export interface LoginViewOptions {
+    navbar?: boolean,
+    logo?: boolean
+}
+
+export interface AfterLoginOptions {
+    navbar?: boolean,
+    logo?: boolean
+}
+
+export interface RegistrationOptions {
+    logo?: boolean
+}
+
 export interface ClientPortalOptions {
     /**
      * Client Portal application url.
@@ -136,6 +150,27 @@ export interface ClientPortalOptions {
      * @returns ScrollTop value which normally would be used to scroll window object. 
      */
     onContentScroll?(scrollTop: number): void;
+
+    /** 
+     * login/register view. 
+     */
+    loginViews?: LoginViewOptions,
+
+    /**
+     * Views visible after user login options.
+     */
+    afterLoginViews?: AfterLoginOptions,
+
+    /**
+     * Registration options.
+     */
+    registrationViews?: RegistrationOptions
+}
+
+interface IConnectOptions {
+    loginViews: LoginViewOptions,
+    afterLoginViews: AfterLoginOptions,
+    registrationViews: RegistrationOptions
 }
 
 interface IframeMessage {
@@ -317,7 +352,13 @@ export class ClientPortal {
         switch(action)
         {
             case 'child-connected':
-                this._sendData('parent-connected');
+                var connectOptions: IConnectOptions = {
+                    loginViews: options.loginViews || {},
+                    afterLoginViews: options.afterLoginViews || {},
+                    registrationViews: options.registrationViews || {}
+                }
+
+                this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
                   this.goTo(options.defaultState || "Profile", options.defaultStateParams);
                   this._wasConnectedBefore = true;

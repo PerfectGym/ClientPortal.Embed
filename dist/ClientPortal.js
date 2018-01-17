@@ -188,7 +188,12 @@ var ClientPortal = /** @class */ (function () {
         var result;
         switch (action) {
             case 'child-connected':
-                this._sendData('parent-connected');
+                var connectOptions = {
+                    loginViews: options.loginViews || {},
+                    afterLoginViews: options.afterLoginViews || {},
+                    registrationViews: options.registrationViews || {}
+                };
+                this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
                     this.goTo(options.defaultState || "Profile", options.defaultStateParams);
                     this._wasConnectedBefore = true;

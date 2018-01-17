@@ -136,6 +136,35 @@ State params from with which Client Portal will be loaded.
 If `language` option is not set Client Portal tries to use user's browser language. If browser language is not supported by Club's Client Portal then language is set to default Client Portal language.
 For list of avaliable languages in your company please contact PerfectGym support.
 
+### loginViews
+
+* type: LoginViewOptions
+* default: {
+    navbar: true,
+    logo: true
+}
+
+Options showing or hiding elements in login page.
+
+### afterLoginViews
+
+* type: AfterLoginOptions
+* default: {
+    navbar: true,
+    logo: true
+}
+
+Options responsible for hiding or showing elements on pages visible after user authentication.
+
+### registrationViews
+* type: AfterLoginOptions
+* default: {
+    logo: true
+}
+
+Options responsible for hiding or showing elements on registration pages.
+
+
 ### hideLoadMask
 
  * type: boolean
