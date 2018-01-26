@@ -1,6 +1,6 @@
 {
   "name": "@perfectgym/client-portal",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "homepage": "https://github.com/davidjbradshaw/iframe-resizer",
   "description": "Liblary for embeding PerfectGym's Client Portal on your page",
   "main": "dist/ClientPortal.common.js",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PerfectGym/ClientPortal.Embed.git"
-},
+  },
   "types": "dist/ClientPortal.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
