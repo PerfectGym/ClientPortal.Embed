@@ -154,17 +154,17 @@ export interface ClientPortalOptions {
     /** 
      * login/register view. 
      */
-    loginViews?: LoginViewOptions,
+    loginPage?: LoginViewOptions,
 
     /**
      * Views visible after user login options.
      */
-    afterLoginViews?: AfterLoginOptions,
+    navigation?: AfterLoginOptions,
 
     /**
      * Registration options.
      */
-    registrationViews?: RegistrationOptions
+    registration?: RegistrationOptions
 }
 
 interface IConnectOptions {
@@ -353,9 +353,9 @@ export class ClientPortal {
         {
             case 'child-connected':
                 var connectOptions: IConnectOptions = {
-                    loginViews: options.loginViews || {},
-                    afterLoginViews: options.afterLoginViews || {},
-                    registrationViews: options.registrationViews || {}
+                    loginViews: options.loginPage || {},
+                    afterLoginViews: options.navigation || {},
+                    registrationViews: options.registration || {}
                 }
 
                 this._sendData('parent-connected', connectOptions);
