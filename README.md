@@ -18,7 +18,7 @@ This liblary is the best way for your company to embed PerfectGym's Client Porta
 ## Embeding tips
 
 Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
-To maintain best responsivenes Embeded Client Portal width value should be close to window.innerWidth. 
+To maintain best responsivenes it is recommended to set your Embeded Client Portal width to full page width. 
 
 ## The simplest way of embeding Client Portal on your site
 

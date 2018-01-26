@@ -5,6 +5,10 @@
   "description": "Liblary for embeding PerfectGym's Client Portal on your page",
   "main": "dist/ClientPortal.common.js",
   "github": "https://github.com/PerfectGym/ClientPortal.Embed",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerfectGym/ClientPortal.Embed.git"
+},
   "types": "dist/ClientPortal.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
