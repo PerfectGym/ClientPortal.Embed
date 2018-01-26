@@ -47,7 +47,7 @@ To maintain best responsivenes Embeded Client Portal width value should be close
         // element to which ClientPortal will be appended
         var clientPortalElement = document.getElementById('pg-client-portal');
         var options = {
-            url: "https://YOUR_COMPANY.perfectgym.com/ClientPortal2"
+            url: "CLIENT_PORTAL_URL"
         }
 
         var embededClientPortal = new ClientPortal(clientPortalElement, options);
@@ -78,7 +78,7 @@ import ClientPortal from "@perfectgym/client-portal";
 // element to which ClientPortal will be appended
 var clientPortalElement = document.getElementById('pg-client-portal');
 var options = {
-    url: "https://YOUR_COMPANY.perfectgym.com/ClientPortal2"
+    url: "CLIENT_PORTAL_URL"
 }
 
 var embededClientPortal = new ClientPortal(clientPortalElement, options);
@@ -100,7 +100,7 @@ Options object must be passed passed to new ClientPortal constructor. `url` para
 ```js
 
 var options = {
-    url: "https://YOUR_COMPANY.perfectgym.com/ClientPortal2"
+    url: "CLIENT_PORTAL_URL"
 }
 
 new ClientPortal(clientPortalElement, options);
@@ -111,7 +111,7 @@ new ClientPortal(clientPortalElement, options);
 
 * type: string 
 
-Client Portal application url. If Client Portal is hosted on PerfectGym domain correct url looks like: https://YOUR_COMPANY.perfectgym.com/ClientPortal2
+Client Portal application url. If Client Portal is hosted on PerfectGym domain correct url looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/`
 
 &nbsp;
 
