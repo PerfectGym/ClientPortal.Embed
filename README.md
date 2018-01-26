@@ -4,9 +4,9 @@
 [![NPM version](https://badge.fury.io/js/@perfectgym/client-portal.svg)](http://badge.fury.io/js/@perfectgym/client-portal)
 [![NPM Downloads](https://img.shields.io/npm/dt/@perfectgym/client-portal.svg)](https://www.npmjs.com/package/@perfectgym/client-portal)
 
-This liblary is the best way for your company to embed PerfectGym's Client Portal on your site. It assumes that when embeding you want to use your own navigation. It provides a range of features which covers intergration needs:
+This library is the best way for your company to embed PerfectGym's Client Portal on your site. It provides a range of features which covers intergration needs:
 
-* Changing states from your site.
+* Navigating from your site.
 * Showing loader on data load.
 * Callbacks on user log in/out.
 * Callbacks on changing states.
@@ -261,7 +261,7 @@ Callback fires when fullscreen dropdown closes on mobile mode.
 
  * type: function(scrollTop: number)
 
-This function is used to override default liblary scroll behaviour. `scrollTop` is scroll value which normally would be used to scroll parent page window.
+This function is used to override default library scroll behaviour. `scrollTop` is scroll value which normally would be used to scroll parent page window.
 
 ## Methods
 
