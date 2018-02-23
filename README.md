@@ -1,6 +1,6 @@
 
 
-# Perfect Gym Client Portal Embed 
+# `Perfect` Gym Client Portal Embed 
 [![npm version](https://badge.fury.io/js/%40perfectgym%2Fclient-portal.svg)](https://badge.fury.io/js/%40perfectgym%2Fclient-portal)
 [![NPM Downloads](https://img.shields.io/npm/dt/@perfectgym/client-portal.svg)](https://www.npmjs.com/package/@perfectgym/client-portal)
 
@@ -15,12 +15,12 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 
 [See demo](https://perfectgym.github.io/ClientPortal.Embed/)
 
-## Embeding tips
+## `Embeding` tips
 
 Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
 To maintain best responsivenes it is recommended to set your Embeded Client Portal width to full page width. 
 
-## The simplest way of embeding Client Portal on your site
+## `The` simplest way of embeding Client Portal on your site
 
 1. Copy `ClientPortal.min.js` and `ClientPortal.css` files from [ClientPortal.Embed GitHub page](https://github.com/davidjbradshaw/iframe-resizer)  to `/libs` folder on your site.
 
@@ -61,7 +61,7 @@ To maintain best responsivenes it is recommended to set your Embeded Client Port
 [Click to find demo code](https://github.com/PerfectGym/ClientPortal.Embed/tree/master/docs) which presents simple embeding Client Portal with own navigation.
 
 
-## Installation
+## `Installation`
 
 Package can be installed via NPM.
 
@@ -69,7 +69,7 @@ Package can be installed via NPM.
 
 It requires [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer) as dependency.
 
-### Using
+### `Using`
 
 ```js
 
@@ -85,15 +85,15 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 ```
 
-# API
+# `API`
 
 API section covers:
 
-1. Constructior options
+1. Constructior options [Core Options](#core-options)
 2. Methods
 3. Data types
 
-## Options
+# `Options`
 
 Options object must be passed passed to new ClientPortal constructor. `url` parameter is required. The rest are optional.
 
@@ -107,7 +107,9 @@ new ClientPortal(clientPortalElement, options);
 
 ```
 
-### url [REQUIRED]
+## `Core Options`
+
+### `url` [REQUIRED]
 
 * type: string 
 
@@ -115,80 +117,202 @@ Client Portal application url. If Client Portal is hosted on PerfectGym domain c
 
 &nbsp;
 
-### defaultState
+### `defaultState`
 
 * type: ClientPortal.State
 * default: ClientPortal.State.Profile
 
 First state showed to user after load. Unauthenticated users are redirected to ClientPortal.State.Login.
 
-### defaultStateParams
+### `defaultStateParams`
 
 * type: Object
 * default: undefined
 
 State params from with which Client Portal will be loaded.
 
-### language
+### `language`
 
 * type: string // Laguage code standarized by ISO 639-1
 
 If `language` option is not set Client Portal tries to use user's browser language. If browser language is not supported by Club's Client Portal then language is set to default Client Portal language.
 For list of avaliable languages in your company please contact PerfectGym support.
 
-### loginPage
+### `onConnect` 
 
-* type: ``` {
-    navbar[optional]: boolean,
-    logo[optional]: boolean
-}```
-* default: {
-    navbar: true,
-    logo: true
+* type: function()
+
+Callback fired when iframe connects to Client Portal.
+
+### `onUserLoggedIn`
+
+* type: function(authInfo: ClientPortalAuthInfo)
+
+Callback fires when user logs in to Client Portal. 
+
+### `onUserLoggedOut`
+
+* type: function(authInfo: ClientPortalAuthInfo)
+
+Callback fires when user logs out from Client Portal. 
+
+### `onStateChangeSuccess`
+
+* type: function(stateInfo: ClientPortalChangeStateInfo)
+
+Callback fires on state (view) change.
+
+### `onContentScroll`
+
+ * type: function(scrollTop: number)
+
+This function is used to override default library scroll behaviour. `scrollTop` is scroll value which normally would be used to scroll parent page window.
+
+***
+
+## `loginPage` options
+
+``` 
+var options = {
+    url: "CLIENT_PORTAL_URL",
+    loginPage: {
+        navbar: true,
+        logo: true
+    }
 }
 
-Options showing or hiding elements in login page.
+var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
-### navigation
+```
 
-* type: ``` {
-    navbar[optional]: boolean,
-    logo[optional]: boolean
-} || false```
-* default: ``` {
-    navbar: true,
-    logo: true
-}```
+Object helpful in customizing login page.
 
-Options responsible for customizing navigation.
+### `navbar`
+    * type: boolean
+    * default: true
 
-### registration
-* type: ``` {
-    logo[optional]: boolean
-}```
-* default: {
-    logo: true
+Show header.
+
+### `logo`
+    * type: boolean
+    * default: true
+
+Show logo in header.
+
+***
+
+## `navigation` options
+
+``` 
+var options = {
+    url: "CLIENT_PORTAL_URL",
+    navigation: {
+        navbar: true,
+        logo: true
+    }
 }
+
+var embededClientPortal = new ClientPortal(clientPortalElement, options);
+```
+
+Options responsible for customizing navigation visible after user logs in.
+
+### `navbar`
+    * type: boolean
+    * default: true
+
+Show navbar.
+
+### `logo`
+    * type: boolean
+    * default: true
+
+***
+
+## `registration` options
+``` 
+var options = {
+    url: "CLIENT_PORTAL_URL",
+    registration: {
+        logo: true
+    }
+}
+
+var embededClientPortal = new ClientPortal(clientPortalElement, options);
+```
 
 Options responsible for customizing registration.
 
+### `logo`
+    * type: boolean
+    * default: true
 
-### hideLoadMask
+***
+
+## `loadMask` options
+``` 
+var options = {
+    url: "CLIENT_PORTAL_URL",
+    loadMask: {
+        disable: true,
+        onShow: () => { console.log('show my load mask')},
+        onHide: () => { console.log('hide my load mask')}
+    }
+}
+
+var embededClientPortal = new ClientPortal(clientPortalElement, options);
+```
+
+Options responsible for customizing load mask.
+
+<!-- ### `hideLoadMask` -->
+### `disable`
 
  * type: boolean
- * dafault: false
+ * default: false
 
 Decides whether to show default Client Portal load mask. Load mask shows when Client Portal is requesting server data or on view change.
-If changed to true you should use `onShowLoadMask()` and `onHideLoadMask()` options to show load mask on your site preventing user from making actions in ClientPortal.
+If changed to true you should use `onShow()` and `onHide()` options to show load mask on your site preventing user from making actions in ClientPortal.
 
-### hideInitLoadMask
+<!-- ### `hideInitLoadMask` -->
+### `disableOnInit`
     
  * type: boolean
  * default: false
 
 Decides whether to hide load mask on initializing iframe.
 
-### hideModalOverlay
+<!-- ### `onShowLoadMask` -->
+### `onShow`
+
+* type: function()
+
+Callback fired when Client Portal normally shows load mask.
+
+<!-- ### `onHideLoadMask` -->
+### `onHide`
+
+* type: function()
+
+Callback fired when Client Portal normally hides load mask.
+
+
+***
+
+## `modal` options
+``` 
+var options = {
+    url: "CLIENT_PORTAL_URL",
+    modal: {
+        disableOverlay: false
+    }
+}
+
+var embededClientPortal = new ClientPortal(clientPortalElement, options);
+```
+
+<!-- ### `hideModalOverlay` -->
+### `disableOverlay`
 
 * type: boolean
 * default: false
@@ -198,84 +322,44 @@ Decides whether to show modal overlay layer on top and bottom of the iframe.
 Overlay covers elements outside of iframe on parent element to focus user attention on popups and other elements opened in Client Portal.
 
 If set to false dark overlay will be used only on elements inside modal.
-If you would like to use your own overlay use `onShowModal()` and `onHideModal()` callback options.
+If you would like to use your own overlay use `onShow()` and `onHide()` callback options.
 
 
-### onConnect 
-
-* type: function()
-
-Callback fired when iframe connects to Client Portal.
-
-### onShowLoadMask
-
-* type: function()
-
-Callback fired when Client Portal normally shows load mask.
-
-### onHideLoadMask
-
-* type: function()
-
-Callback fired when Client Portal normally hides load mask.
-
-### onShowModal
+<!-- ### `onShowModal` -->
+### `onShow`
 
 * type: function()
 
 Callback when Client Portal shows modal (popup).
 
-### onHideModal
+### `onHide`
 
 * type: function()
 
 Callback fires when Client Portal hides modal (popup).
 
-### onUserLoggedIn
 
-* type: function(authInfo: ClientPortalAuthInfo)
-
-Callback fires when user logs in to Client Portal. 
-
-### onUserLoggedOut
-
-* type: function(authInfo: ClientPortalAuthInfo)
-
-Callback fires when user logs out from Client Portal. 
-
-### onStateChangeSuccess
-
-* type: function(stateInfo: ClientPortalChangeStateInfo)
-
-Callback fires on state (view) change.
-
-### onMobileDropdownOpen
+### `onMobileOpen`
 
 * type: function()
 
-Some dropdowns opens fullscreen on mobile mode. This callback fires when fullscreen dropdown opens on mobile mode.
+Some dropdowns opens only on mobile mode. This callback fires when fullscreen dropdown opens on mobile mode.
 
-### onMobileDropdownClose 
+<!-- ### `onMobileDropdownClose`  -->
+### `onMobileClose` 
 
 * type: function()
 
-Callback fires when fullscreen dropdown closes on mobile mode.
+Callback fires when dropdown opened only on mobile mode closes.
 
-### onStateChangeSuccess
+***
 
-* type: function(stateInfo: ClientPortalChangeStateInfo)
 
-### onContentScroll
-
- * type: function(scrollTop: number)
-
-This function is used to override default library scroll behaviour. `scrollTop` is scroll value which normally would be used to scroll parent page window.
-
-## Methods
+## `Methods`
 
 Metods can be used on embeded Client Portal object. All methods returns promise which is resolved on response from server.
 
-### goTo
+### `goTo`
 
  * type: function(state: ClientPortal.State)
  * returns: Promise<>
@@ -290,14 +374,14 @@ var CP = new ClientPortal(element, options)
 CP.goTo(ClientPortal.State.Login)
 ```
 
-### logout
+### `logout`
  
  * type: function(state: ClientPortal.State)
  * returns: Promise<>
 
 Logouts user.
 
-### changeLanguage
+### `changeLanguage`
 
  * type: function(languageCode: string)
  * returns: Promise<>
@@ -306,25 +390,25 @@ Changes client portal language.
 
 Laguage code is a two letters string standarized by ISO 639-1.
 
-### isUserLoggedIn
+### `isUserLoggedIn`
 
 * type: function()
 * returns: Promise<authInfo: ClientPortalAuthInfo>
 
 Returns info if user is authenticated.
 
-### getElement
+### `getElement`
     
 * type: function()
 * returns: Promise<element: HTMLIFrameElement>
 
 Returns iframe element.
 
-## Clent Portal types
+## `Clent` Portal types
 
 Types listed below are used as retrun types or parameters in options and methods. 
 
-### ClientPortal.State
+### `ClientPortal`.State
 
 Can be used in implementing own navigation, using goTo() method.
 
@@ -350,7 +434,7 @@ CP.goTo(ClientPortal.State.<STATE_FROM_LIST_BELOW>)
 * ProfilePayments
 * ProfileFamily
 
-### ClientPortalAuthInfo
+### `ClientPortalAuthInfo`
 
 ```js
 {
@@ -359,7 +443,7 @@ CP.goTo(ClientPortal.State.<STATE_FROM_LIST_BELOW>)
 }
 ```
 
-### ClientPortalUserInfo
+### `ClientPortalUserInfo`
 
 ```js
 {
@@ -372,7 +456,7 @@ CP.goTo(ClientPortal.State.<STATE_FROM_LIST_BELOW>)
 }
 ```
 
-### ClientPortalChangeStateInfo
+### `ClientPortalChangeStateInfo`
 
 ```js
 {
@@ -382,7 +466,7 @@ CP.goTo(ClientPortal.State.<STATE_FROM_LIST_BELOW>)
 }
 ```
 
-### ClientPortalStateInfo
+### `ClientPortalStateInfo`
 
 ```js
 {

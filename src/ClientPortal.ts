@@ -41,6 +41,32 @@ export interface RegistrationOptions {
     logo?: boolean
 }
 
+export interface LoadMaskOptions {
+    // Decides whether to show default Client Portal load mask.
+    disable?: boolean,
+    // Decides whether to hide load mask on initializing iframe.
+    disableOnInit?: boolean,
+    // Callback fired when Client Portal normally shows load mask.
+    onShow?: Function,
+    // Callback fired when Client Portal normally hides load mask.
+    onHide?: Function
+}
+
+export interface ModalOptions {
+    // Decides whether to show modal overlay layer on top and bottom of the iframe. 
+    // Overlay covers elements outside of iframe on parent element to focus user attention
+    // on popups and other elements opened in Client Portal.
+    disableOverlay: boolean,
+    // Callback fired when Client Portal shows modal.
+    onShow: Function,
+    // Callback fired when Client Portal hides modal.
+    onHide: Function,
+    // Callback fired when dropdown opens on mobile mode.
+    onMobileOpen: Function,
+    // Callback fired when dropdown closes on mobile mode.
+    onMobileClose: Function
+}
+
 export interface ClientPortalOptions {
     /**
      * Client Portal application url.
@@ -58,12 +84,6 @@ export interface ClientPortalOptions {
     defaultStateParams?: any;
 
     /**
-     * [DEPRECATED]
-     * Navbar height in pixels.
-     */
-    // navbarHeight: number;
-
-    /**
      * Laguage code standarized by ISO 639-1
      */
     language?: string;
@@ -72,6 +92,64 @@ export interface ClientPortalOptions {
      * Callback fired when iframe connects to Client Portal.
      */
     onConnect?(): void;
+
+    /**
+     * Callback fired when user logs in to Client Portal.
+     */
+    onUserLoggedIn?(data: ClientPortalAuthInfo): void;
+
+    /**
+     * Callback fired when user logs out from Client Portal.
+     */
+    onUserLoggedOut?(data: ClientPortalAuthInfo): void;
+
+    /**
+     * Callback fired when Client Portal finished transition to other state.
+     */
+    onStateChangeSuccess?(data: ClientPortalChangeStateInfo): void;
+
+    /**
+     * Some of Client Portal states are virtual - they shouldn't be added to browser history.
+     * Setting this flag to true means that in onStateChangeSuccess() callback function 
+     * you will get object with property isVirtual which means that state is virtual.
+     * 
+     * @default false
+     */
+    enableVirtualStates?: boolean;    
+
+    /**
+     * Callback on content scroll.
+     * 
+     * @returns ScrollTop value which normally would be used to scroll window object. 
+     */
+    onContentScroll?(scrollTop: number): void;
+
+    /** 
+     * login/register view. 
+     */
+    loginPage?: LoginViewOptions,
+
+    /**
+     * Views visible after user login options.
+     */
+    navigation?: AfterLoginOptions,
+
+    /**
+     * Registration options.
+     */
+    registration?: RegistrationOptions
+
+    /**
+     * Load mask options.
+     */    
+    loadMask?: LoadMaskOptions,
+
+    /**
+     * Modal options.
+     */
+    modal?: ModalOptions
+
+    // OPTIONS BELOW ARE DEPRECATED
 
     /**
      * Decides whether to show default Client Portal load mask.
@@ -110,29 +188,6 @@ export interface ClientPortalOptions {
      */
     onHideModal?(): void;
 
-    /**
-     * Callback fired when user logs in to Client Portal.
-     */
-    onUserLoggedIn?(data: ClientPortalAuthInfo): void;
-
-    /**
-     * Callback fired when user logs out from Client Portal.
-     */
-    onUserLoggedOut?(data: ClientPortalAuthInfo): void;
-
-    /**
-     * Callback fired when Client Portal finished transition to other state.
-     */
-    onStateChangeSuccess?(data: ClientPortalChangeStateInfo): void;
-
-    /**
-     * Some of Client Portal states are virtual - they shouldn't be added to browser history.
-     * Setting this flag to true means that in onStateChangeSuccess() callback function 
-     * you will get object with property isVirtual which means that state is virtual.
-     * 
-     * @default false
-     */
-    enableVirtualStates?: boolean;    
 
     /**
      * Callback fired when dropdown opens on mobile mode.
@@ -144,27 +199,6 @@ export interface ClientPortalOptions {
      */
     onMobileDropdownClose?(): void;
     
-    /**
-     * Callback on content scroll.
-     * 
-     * @returns ScrollTop value which normally would be used to scroll window object. 
-     */
-    onContentScroll?(scrollTop: number): void;
-
-    /** 
-     * login/register view. 
-     */
-    loginPage?: LoginViewOptions,
-
-    /**
-     * Views visible after user login options.
-     */
-    navigation?: AfterLoginOptions,
-
-    /**
-     * Registration options.
-     */
-    registration?: RegistrationOptions
 }
 
 interface IConnectOptions {
@@ -271,9 +305,11 @@ export class ClientPortal {
             }
         });
 
-        if (!options.hideLoadMask) {
+        if (!options.hideLoadMask || 
+            (options.loadMask && !options.loadMask.disable)) {
             addLoadMask();
-            if(!options.hideInitLoadMask)
+            if(!options.hideInitLoadMask ||
+                (options.loadMask && options.loadMask.disableOnInit))
                 showLoadMask();
         }
 
@@ -366,25 +402,33 @@ export class ClientPortal {
                 options.onConnect && options.onConnect();
                 break;
             case 'showLoadMask':
-                if(!options.hideLoadMask)
+                if(!options.hideLoadMask ||
+                    (options.loadMask && !options.loadMask.disable))
                     showLoadMask();
                 options.onShowLoadMask && options.onShowLoadMask();
+                options.loadMask && options.loadMask.onShow && options.loadMask.onShow();
                 break;
             case 'hideLoadMask':
-                if(!options.hideLoadMask)
+                if(!options.hideLoadMask ||
+                    options.loadMask && !options.loadMask.disable)
                     hideLoadMask();
                 options.onHideLoadMask && options.onHideLoadMask();
+                options.loadMask && options.loadMask.onHide && options.loadMask.onHide();
                 break;
             case 'showModalOverlay':
-                if (!options.hideModalOverlay)
+                if (!options.hideModalOverlay ||
+                    options.modal && !options.modal.disableOverlay)
                     this._showModalOverlay();
                 options.onShowModal && options.onShowModal();
+                options.modal && options.modal.onShow && options.modal.onShow();
                 result = this._getViewport(options);
                 break;
             case 'hideModalOverlay':
-                if (!options.hideModalOverlay)
+                if (!options.hideModalOverlay || 
+                    options.modal && !options.modal.disableOverlay)
                     this._hideModalOverlay();
                 options.onHideModal && options.onHideModal();
+                options.modal && options.modal.onHide && options.modal.onHide();
                 break;
             case 'userLoggedIn':
                 options.onUserLoggedIn && options.onUserLoggedIn(data);
@@ -405,10 +449,12 @@ export class ClientPortal {
                 break;
             case 'mobileDropdownOpen':
                 options.onMobileDropdownOpen && options.onMobileDropdownOpen();
+                options.modal && options.modal.onMobileOpen && options.modal.onMobileOpen();
                 result = this._getViewport(options);
                 break;
             case 'mobileDropdownClose':
                 options.onMobileDropdownClose && options.onMobileDropdownClose();
+                options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
                 if (options.onContentScroll) {
