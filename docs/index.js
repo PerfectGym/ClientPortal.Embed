@@ -40,9 +40,9 @@ window.onload = function () {
         var CP = new ClientPortal(element, options);
     }
 
-    window.getUserData = () => {
+    window.getUserData = function() {
         CP.isUserLoggedIn()
-            .then((data) => {
+            .then(function(data) {
                 var navigationElement = document.getElementById('page-header');
 
                 if (data.isAuthenticated) {
@@ -54,16 +54,16 @@ window.onload = function () {
 
     }
 
-    window.logout = () => {
+    window.logout = function() {
         CP.logout()
-            .then(() => {
+            .then(function() {
                 var navigationElement = document.getElementById('page-header');
 
                 navigationElement.classList.remove('.user-logged-in');
             })
     }
 
-    window.goTo = (stateName, params) => {
+    window.goTo = function(stateName, params) {
         CP.goTo(ClientPortal.State[stateName], params)
     }
 
