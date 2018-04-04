@@ -29,7 +29,12 @@ export interface ClientPortalAuthInfo {
 
 export interface LoginViewOptions {
     navbar?: boolean,
-    logo?: boolean
+    logo?: boolean,
+    image?: boolean
+}
+
+export interface CalendarPageOptions {
+    hideBookingIfNotLogged?: boolean
 }
 
 export interface AfterLoginOptions {
@@ -130,6 +135,11 @@ export interface ClientPortalOptions {
     loginPage?: LoginViewOptions,
 
     /**
+     * calendar page view.
+     */
+    calendarPage?: CalendarPageOptions,
+
+    /**
      * Views visible after user login options.
      */
     navigation?: AfterLoginOptions,
@@ -202,9 +212,10 @@ export interface ClientPortalOptions {
 }
 
 interface IConnectOptions {
-    loginViews: LoginViewOptions,
-    afterLoginViews: AfterLoginOptions,
-    registrationViews: RegistrationOptions
+    loginPage: LoginViewOptions,
+    navigation: AfterLoginOptions,
+    registration: RegistrationOptions,
+    calendarPage: CalendarPageOptions
 }
 
 interface IframeMessage {
@@ -389,9 +400,10 @@ export class ClientPortal {
         {
             case 'child-connected':
                 var connectOptions: IConnectOptions = {
-                    loginViews: options.loginPage || {},
-                    afterLoginViews: options.navigation || {},
-                    registrationViews: options.registration || {}
+                    loginPage: options.loginPage || {},
+                    navigation: options.navigation || {},
+                    registration: options.registration || {},
+                    calendarPage: options.calendarPage || {}
                 }
 
                 this._sendData('parent-connected', connectOptions);
@@ -491,12 +503,25 @@ export class ClientPortal {
         // todo: find out why -4 is needed
         bottomOverlay.style.bottom = (bottomOverlayHeight - 4) * -1 + 'px';
         bottomOverlay.style.height = bottomOverlayHeight + 'px';
+        
+        let leftOverlay = this._createModalOverlay();
+        leftOverlay.style.top = topOverlay.style.top;
+        leftOverlay.style.bottom = bottomOverlay.style.bottom;
+        leftOverlay.style.left = bodyRect.left - boundingRect.left + 'px';
+        leftOverlay.style.right = boundingRect.width + 'px';
+
+        let rightOverlay = this._createModalOverlay();
+        rightOverlay.style.top = topOverlay.style.top;
+        rightOverlay.style.bottom = bottomOverlay.style.bottom;
+        rightOverlay.style.left = boundingRect.width + 'px';
+        rightOverlay.style.right = -(bodyRect.right - boundingRect.right) + 'px';
 
         if (!this._elementWrapper)
             return;
         this._elementWrapper.appendChild(topOverlay);
         this._elementWrapper.appendChild(bottomOverlay);
-
+        this._elementWrapper.appendChild(leftOverlay);
+        this._elementWrapper.appendChild(rightOverlay);
     }
 
     private _hideModalOverlay() {

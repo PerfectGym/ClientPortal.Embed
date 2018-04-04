@@ -121,9 +121,11 @@ var ClientPortal = /** @class */ (function () {
                 _this._onMessage(msg, options, event);
             }
         });
-        if (!options.hideLoadMask) {
+        if (!options.hideLoadMask ||
+            (options.loadMask && !options.loadMask.disable)) {
             addLoadMask();
-            if (!options.hideInitLoadMask)
+            if (!options.hideInitLoadMask ||
+                (options.loadMask && options.loadMask.disableOnInit))
                 showLoadMask();
         }
         var iframe = iframeResize({
@@ -189,9 +191,10 @@ var ClientPortal = /** @class */ (function () {
         switch (action) {
             case 'child-connected':
                 var connectOptions = {
-                    loginViews: options.loginViews || {},
-                    afterLoginViews: options.afterLoginViews || {},
-                    registrationViews: options.registrationViews || {}
+                    loginPage: options.loginPage || {},
+                    navigation: options.navigation || {},
+                    registration: options.registration || {},
+                    calendarPage: options.calendarPage || {}
                 };
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
@@ -201,25 +204,33 @@ var ClientPortal = /** @class */ (function () {
                 options.onConnect && options.onConnect();
                 break;
             case 'showLoadMask':
-                if (!options.hideLoadMask)
+                if (!options.hideLoadMask ||
+                    (options.loadMask && !options.loadMask.disable))
                     showLoadMask();
                 options.onShowLoadMask && options.onShowLoadMask();
+                options.loadMask && options.loadMask.onShow && options.loadMask.onShow();
                 break;
             case 'hideLoadMask':
-                if (!options.hideLoadMask)
+                if (!options.hideLoadMask ||
+                    options.loadMask && !options.loadMask.disable)
                     hideLoadMask();
                 options.onHideLoadMask && options.onHideLoadMask();
+                options.loadMask && options.loadMask.onHide && options.loadMask.onHide();
                 break;
             case 'showModalOverlay':
-                if (!options.hideModalOverlay)
+                if (!options.hideModalOverlay ||
+                    options.modal && !options.modal.disableOverlay)
                     this._showModalOverlay();
                 options.onShowModal && options.onShowModal();
+                options.modal && options.modal.onShow && options.modal.onShow();
                 result = this._getViewport(options);
                 break;
             case 'hideModalOverlay':
-                if (!options.hideModalOverlay)
+                if (!options.hideModalOverlay ||
+                    options.modal && !options.modal.disableOverlay)
                     this._hideModalOverlay();
                 options.onHideModal && options.onHideModal();
+                options.modal && options.modal.onHide && options.modal.onHide();
                 break;
             case 'userLoggedIn':
                 options.onUserLoggedIn && options.onUserLoggedIn(data);
@@ -240,10 +251,12 @@ var ClientPortal = /** @class */ (function () {
                 break;
             case 'mobileDropdownOpen':
                 options.onMobileDropdownOpen && options.onMobileDropdownOpen();
+                options.modal && options.modal.onMobileOpen && options.modal.onMobileOpen();
                 result = this._getViewport(options);
                 break;
             case 'mobileDropdownClose':
                 options.onMobileDropdownClose && options.onMobileDropdownClose();
+                options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
                 if (options.onContentScroll) {
@@ -276,10 +289,22 @@ var ClientPortal = /** @class */ (function () {
         // todo: find out why -4 is needed
         bottomOverlay.style.bottom = (bottomOverlayHeight - 4) * -1 + 'px';
         bottomOverlay.style.height = bottomOverlayHeight + 'px';
+        var leftOverlay = this._createModalOverlay();
+        leftOverlay.style.top = topOverlay.style.top;
+        leftOverlay.style.bottom = bottomOverlay.style.bottom;
+        leftOverlay.style.left = bodyRect.left - boundingRect.left + 'px';
+        leftOverlay.style.right = boundingRect.width + 'px';
+        var rightOverlay = this._createModalOverlay();
+        rightOverlay.style.top = topOverlay.style.top;
+        rightOverlay.style.bottom = bottomOverlay.style.bottom;
+        rightOverlay.style.left = boundingRect.width + 'px';
+        rightOverlay.style.right = -(bodyRect.right - boundingRect.right) + 'px';
         if (!this._elementWrapper)
             return;
         this._elementWrapper.appendChild(topOverlay);
         this._elementWrapper.appendChild(bottomOverlay);
+        this._elementWrapper.appendChild(leftOverlay);
+        this._elementWrapper.appendChild(rightOverlay);
     };
     ClientPortal.prototype._hideModalOverlay = function () {
         var parentElement = document.getElementsByClassName(this._elementWrapperSelector)[0];

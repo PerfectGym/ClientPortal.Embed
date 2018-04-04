@@ -7,7 +7,6 @@ body {
 .page-content {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
   padding-top: 60px;
 }
 .header {
@@ -211,4 +210,34 @@ body {
 
 .hidden {
     transform: translateX(-100%);
+}
+
+.calendar-demo-body .prettyprint {
+    padding: 20px; 
+    border: 1px solid #dae6f1; 
+    border-radius: 4px;
+}
+
+.calendar-demo-body {
+    background-color: #e7eff6
+}
+
+.calendar-page-content {
+    width: 80vw;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+}
+
+.calendar-page-description {
+    margin: 30px;
+}
+
+.calendar-page-description img {
+  height: 22px;
+}
+
+#pg-client-portal-calendar {
+    background:#e7eff6; 
+    margin: 30px;
 }

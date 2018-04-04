@@ -15,6 +15,8 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 
 [See demo](https://perfectgym.github.io/ClientPortal.Embed/)
 
+[Calendar embeding demo](https://perfectgym.github.io/ClientPortal.Embed/calendar)
+
 ## `Embeding` tips
 
 Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
@@ -167,6 +169,16 @@ Callback fires on state (view) change.
  * type: function(scrollTop: number)
 
 This function is used to override default library scroll behaviour. `scrollTop` is scroll value which normally would be used to scroll parent page window.
+
+***
+
+## `calendarPage` options
+
+### `hideBookingIfNotLogged`
+    * type: boolean
+    * default: false
+
+Hides "Book now" button on calendar when user is not logged. This function is usefull when you want to elmbed only calendar on your site.
 
 ***
 

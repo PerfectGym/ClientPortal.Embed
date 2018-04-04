@@ -5,15 +5,19 @@ window.onload = function () {
     var ClientPortal = PerfectGym.ClientPortal;
 
     var options = {
-        url: "https://presentation.perfectgym.pl/ClientPortal2/",
-        loginViews: {
+        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2/",
+        loginPage: {
+            navbar: false,
+            image: true
+        },
+        navigation: {
             navbar: false
         },
-        afterLoginViews: {
-            navbar: false
-        },
-        registrationViews: {
+        registration: {
             logo: false
+        },
+        calendarPage: {
+            hideBookingIfNotLogged: true
         },
         
         onConnect() {

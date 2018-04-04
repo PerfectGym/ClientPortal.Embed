@@ -24,6 +24,10 @@ export interface ClientPortalAuthInfo {
 export interface LoginViewOptions {
     navbar?: boolean;
     logo?: boolean;
+    image?: boolean;
+}
+export interface CalendarPageOptions {
+    hideBookingIfNotLogged?: boolean;
 }
 export interface AfterLoginOptions {
     navbar?: boolean;
@@ -31,6 +35,19 @@ export interface AfterLoginOptions {
 }
 export interface RegistrationOptions {
     logo?: boolean;
+}
+export interface LoadMaskOptions {
+    disable?: boolean;
+    disableOnInit?: boolean;
+    onShow?: Function;
+    onHide?: Function;
+}
+export interface ModalOptions {
+    disableOverlay: boolean;
+    onShow: Function;
+    onHide: Function;
+    onMobileOpen: Function;
+    onMobileClose: Function;
 }
 export interface ClientPortalOptions {
     /**
@@ -46,10 +63,6 @@ export interface ClientPortalOptions {
      */
     defaultStateParams?: any;
     /**
-     * [DEPRECATED]
-     * Navbar height in pixels.
-     */
-    /**
      * Laguage code standarized by ISO 639-1
      */
     language?: string;
@@ -57,6 +70,56 @@ export interface ClientPortalOptions {
      * Callback fired when iframe connects to Client Portal.
      */
     onConnect?(): void;
+    /**
+     * Callback fired when user logs in to Client Portal.
+     */
+    onUserLoggedIn?(data: ClientPortalAuthInfo): void;
+    /**
+     * Callback fired when user logs out from Client Portal.
+     */
+    onUserLoggedOut?(data: ClientPortalAuthInfo): void;
+    /**
+     * Callback fired when Client Portal finished transition to other state.
+     */
+    onStateChangeSuccess?(data: ClientPortalChangeStateInfo): void;
+    /**
+     * Some of Client Portal states are virtual - they shouldn't be added to browser history.
+     * Setting this flag to true means that in onStateChangeSuccess() callback function
+     * you will get object with property isVirtual which means that state is virtual.
+     *
+     * @default false
+     */
+    enableVirtualStates?: boolean;
+    /**
+     * Callback on content scroll.
+     *
+     * @returns ScrollTop value which normally would be used to scroll window object.
+     */
+    onContentScroll?(scrollTop: number): void;
+    /**
+     * login/register view.
+     */
+    loginPage?: LoginViewOptions;
+    /**
+     * calendar page view.
+     */
+    calendarPage?: CalendarPageOptions;
+    /**
+     * Views visible after user login options.
+     */
+    navigation?: AfterLoginOptions;
+    /**
+     * Registration options.
+     */
+    registration?: RegistrationOptions;
+    /**
+     * Load mask options.
+     */
+    loadMask?: LoadMaskOptions;
+    /**
+     * Modal options.
+     */
+    modal?: ModalOptions;
     /**
      * Decides whether to show default Client Portal load mask.
      */
@@ -88,26 +151,6 @@ export interface ClientPortalOptions {
      */
     onHideModal?(): void;
     /**
-     * Callback fired when user logs in to Client Portal.
-     */
-    onUserLoggedIn?(data: ClientPortalAuthInfo): void;
-    /**
-     * Callback fired when user logs out from Client Portal.
-     */
-    onUserLoggedOut?(data: ClientPortalAuthInfo): void;
-    /**
-     * Callback fired when Client Portal finished transition to other state.
-     */
-    onStateChangeSuccess?(data: ClientPortalChangeStateInfo): void;
-    /**
-     * Some of Client Portal states are virtual - they shouldn't be added to browser history.
-     * Setting this flag to true means that in onStateChangeSuccess() callback function
-     * you will get object with property isVirtual which means that state is virtual.
-     *
-     * @default false
-     */
-    enableVirtualStates?: boolean;
-    /**
      * Callback fired when dropdown opens on mobile mode.
      */
     onMobileDropdownOpen?(): void;
@@ -115,24 +158,6 @@ export interface ClientPortalOptions {
      * Callback fired when dropdown closes on mobile mode.
      */
     onMobileDropdownClose?(): void;
-    /**
-     * Callback on content scroll.
-     *
-     * @returns ScrollTop value which normally would be used to scroll window object.
-     */
-    onContentScroll?(scrollTop: number): void;
-    /**
-     * login/register view.
-     */
-    loginViews?: LoginViewOptions;
-    /**
-     * Views visible after user login options.
-     */
-    afterLoginViews?: AfterLoginOptions;
-    /**
-     * Registration options.
-     */
-    registrationViews?: RegistrationOptions;
 }
 export declare class ClientPortal {
     private _element;
