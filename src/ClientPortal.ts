@@ -341,7 +341,7 @@ export class ClientPortal {
         });
 
         // If there wasn't any action performed it means that the communication comes from 
-        // other liblary (seamless) it means that we shouldn't send response
+        // other library (seamless) it means that we shouldn't send response
         if (msg.action && msg.id)
             event.source.postMessage(response, event.origin);
     }
@@ -572,7 +572,7 @@ export class ClientPortal {
         return paramsString;
     }
 
-    // because of communication now liblary supports only one iframe support
+    // because of communication now library supports only one iframe support
     private _sendData(action: string, data?: any) {
         return new Promise((resolve: Function) => {
             let id = Math.round(Math.random() * 999999);
