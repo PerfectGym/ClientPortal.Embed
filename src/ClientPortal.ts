@@ -30,7 +30,7 @@ export interface ClientPortalAuthInfo {
 export interface LoginViewOptions {
     navbar?: boolean,
     logo?: boolean,
-    image?: boolean
+    backgroundImage?: boolean
 }
 
 export interface CalendarPageOptions {
@@ -38,7 +38,7 @@ export interface CalendarPageOptions {
 }
 
 export interface AfterLoginOptions {
-    navbar?: boolean,
+    hide?: boolean,
     logo?: boolean
 }
 

@@ -24,13 +24,13 @@ export interface ClientPortalAuthInfo {
 export interface LoginViewOptions {
     navbar?: boolean;
     logo?: boolean;
-    image?: boolean;
+    backgroundImage?: boolean;
 }
 export interface CalendarPageOptions {
     hideBookingIfNotLogged?: boolean;
 }
 export interface AfterLoginOptions {
-    navbar?: boolean;
+    hide?: boolean;
     logo?: boolean;
 }
 export interface RegistrationOptions {

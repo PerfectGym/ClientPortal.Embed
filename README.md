@@ -219,7 +219,7 @@ Show logo in header.
 var options = {
     url: "CLIENT_PORTAL_URL",
     navigation: {
-        navbar: true,
+        hide: false,
         logo: true
     }
 }
@@ -229,9 +229,9 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 Options responsible for customizing navigation visible after user logs in.
 
-### `navbar`
+### `hide`
     * type: boolean
-    * default: true
+    * default: false
 
 Show navbar.
 

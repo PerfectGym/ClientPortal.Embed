@@ -8,16 +8,13 @@ window.onload = function () {
         url: "https://presentation.perfectgym.pl/ClientPortal2/",
         loginPage: {
             navbar: false,
-            image: true
+            backgroundImage: true
         },
         navigation: {
-            navbar: false
+            hide: true
         },
         registration: {
             logo: false
-        },
-        calendarPage: {
-            hideBookingIfNotLogged: true
         },
         
         onConnect() {
