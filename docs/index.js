@@ -32,6 +32,21 @@ window.onload = function () {
             var navigationElement = document.getElementById('page-header');
 
             navigationElement.classList.remove('user-logged-in');
+        },
+
+        loadMask: {
+            disable: true,
+            disableOnInit: true,
+            onShow: function() {
+                console.log("Show load mask")
+            },
+            onHide: function() {
+                console.log("Hide load mask");
+            }
+        },
+
+        onStateChangeSuccess(fromState, toState) {
+            console.log("stateChanged from: ", fromState, " to:", toState);
         }
     };
 
