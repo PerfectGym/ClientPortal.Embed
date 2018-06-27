@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal Calendar Integration</title>
     
-    <link rel="stylesheet" href="../libs/ClientPortal.css"></link>
+    <link rel="stylesheet" href="https://unpkg.com/@perfectgym/client-portal/dist/ClientPortal.css"></link>
     <link rel="stylesheet" href="../style.css"></link>
 </head>
 
@@ -15,35 +15,56 @@
     <div class="calendar-page-content">
         <div class="calendar-page-description">
             
-            <h1>Client Portal Calendar Integration</h1>
-            <h2>JavaScript code: 
+            <h1>Client Portal Calendar Integration </h1>
+            <h2> Library:
                 <a href="https://github.com/PerfectGym/ClientPortal.Embed">
-                <img src="../images/mark-github.svg"><img style="padding-left: 5px;" src="../images/logo-github.svg">
+                    <img src="../images/mark-github.svg"><img style="padding-left: 5px;" src="../images/logo-github.svg">
                 </a>
             </h2>
-<pre class="prettyprint ">
-var options = {
-    url: "CLIENT_PORTAL_URL",
-    calendarPage: {
-        hideBookingIfNotLogged: true
-    },
-    defaultState: PerfectGym.ClientPortal.State.Classes
-};
+            <h2>Code snippet:  
+            </h2>
+            <p>Minimal amout of code which is required to embed calendar on your page.</p>
+            
 
-var element = document.getElementById('pg-client-portal-calendar');
+<pre class="prettyprint">
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.css"&gt;&lt;/link&gt;
+&lt;/head&gt;
 
-var CP = new PerfectGym.ClientPortal(element, options);
+&lt;body&gt;
+
+    &lt;div id="pg-client-portal-calendar"&gt;&lt;/div&gt;
+
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/iframe-resizer@latest/js/iframeResizer.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+        var options = {
+            url: "CLIENT_PORTAL_URL",
+            calendarPage: {
+                hideBookingIfNotLogged: true
+            },
+            defaultState: PerfectGym.ClientPortal.State.Classes
+        };
+
+        var element = document.getElementById('pg-client-portal-calendar');
+
+        var CP = new PerfectGym.ClientPortal(element, options);
+    &lt;/script&gt;
+&lt;/body&gt;
 </pre>
 
-        <h2>Demo</h2>
         </div>
+        
+        <h2 class="calendar-page-demo-title">Demo</h2>
         <div id="pg-client-portal-calendar">
         </div>
     </div>
 
     <!-- I have a problem with including this library with webpack -->
-    <script src="..//libs/iframeResizer.min.js"></script>
-    <script src="../libs/ClientPortal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@latest/js/iframeResizer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
     <script type="text/javascript">
         window.onload = function () {
 
@@ -65,7 +86,7 @@ var CP = new PerfectGym.ClientPortal(element, options);
 
         }
     </script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/code-prettify@0.1.0/loader/run_prettify.js"></script>
     
 </body>
 

@@ -224,20 +224,20 @@ body {
 
 .calendar-page-content {
     width: 80vw;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
+    margin: 0 auto;
 }
 
 .calendar-page-description {
-    margin: 30px;
+    margin: 0;
+    padding: 60px 60px 40px;
+    background: white;
 }
 
 .calendar-page-description img {
   height: 22px;
 }
 
-#pg-client-portal-calendar {
-    background:#e7eff6; 
-    margin: 30px;
+.calendar-page-demo-title {
+  margin-left: 50px;
+  margin-top: 40px;
 }

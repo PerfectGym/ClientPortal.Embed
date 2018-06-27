@@ -3,7 +3,7 @@
   "version": "1.5.0",
   "homepage": "https://github.com/davidjbradshaw/iframe-resizer",
   "description": "Library for embeding PerfectGym's Client Portal on your page",
-  "main": "dist/ClientPortal.common.js",
+  "main": "dist/ClientPortal.min.js",
   "github": "https://github.com/PerfectGym/ClientPortal.Embed",
   "repository": {
     "type": "git",
