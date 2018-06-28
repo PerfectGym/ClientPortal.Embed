@@ -1,6 +1,6 @@
 
 
-# `Perfect` Gym Client Portal Embed 
+# Perfect Gym Client Portal Embed 
 [![npm version](https://badge.fury.io/js/%40perfectgym%2Fclient-portal.svg)](https://badge.fury.io/js/%40perfectgym%2Fclient-portal)
 [![NPM Downloads](https://img.shields.io/npm/dt/@perfectgym/client-portal.svg)](https://www.npmjs.com/package/@perfectgym/client-portal)
 
@@ -13,35 +13,46 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 * Cookies support on safari.
 * Has TypeScript support.
 
-[See demo](https://perfectgym.github.io/ClientPortal.Embed/)
+
+[jsFiddle live demo](https://jsfiddle.net/bez9wgyk).
+
+[Demo with own navigation](https://perfectgym.github.io/ClientPortal.Embed/)
 
 [Calendar embeding demo](https://perfectgym.github.io/ClientPortal.Embed/calendar)
 
-## `Embeding` tips
+## Embeding tips
 
 Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
 To maintain best responsivenes it is recommended to set your Embeded Client Portal width to full page width. 
 
-## `The` simplest way of embeding Client Portal on your site
+## The simplest way of embeding Client Portal on your site
 
-1. Copy `ClientPortal.min.js` and `ClientPortal.css` files from [ClientPortal.Embed GitHub page](https://github.com/davidjbradshaw/iframe-resizer)  to `/libs` folder on your site.
+We recommend including ClientPortal.Embed and iframe-resizer using [jsDelivr](https://www.jsdelivr.com) CDN.
 
-2. Copy `iframeResizer.min.js` file from [iframe-resizer GitHub page](https://github.com/davidjbradshaw/iframe-resizer/tree/master/js) to `/libs` folder on your site.
+1. Add ClientPortal.Embed styling.
 
-3. At the end of `<head>` add:
-
+At the end of `<head>` add:
 ```html 
 
-<link rel="stylesheet" href="libs/ClientPortal.css"></link>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.css"></link>
 
 ```
 
-4. At the end of `<body>` tag add:
+2. Add [iframe-resizer GitHub page](https://github.com/davidjbradshaw/iframe-resizer) and [ClientPortal.Embed GitHub page](https://github.com/PerfectGym/ClientPortal.Embed) libraries.
 
+At the end of `<body>` tag add:
+```html  
+
+<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@3.6.1/js/iframeResizer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
+
+```
+
+3. Initialize library.
+
+After scripts form 2nd point add:
 ```html
 
-<script src="libs/iframeResizer.min.js"></script>
-<script src="libs/ClientPortal.min.js"></script>
 <script>
     window.onload = function () {
         var ClientPortal = window.PerfectGym.ClientPortal;
@@ -58,12 +69,12 @@ To maintain best responsivenes it is recommended to set your Embeded Client Port
 
 ```
 
-5. Reload your page
+4. Reload your page
 
-[Click to find demo code](https://github.com/PerfectGym/ClientPortal.Embed/tree/master/docs) which presents simple embeding Client Portal with own navigation.
+[Click here to play with live demo](https://jsfiddle.net/bez9wgyk).
 
 
-## `Installation`
+## Installation
 
 Package can be installed via NPM.
 
@@ -71,7 +82,7 @@ Package can be installed via NPM.
 
 It requires [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer) as dependency.
 
-### `Using`
+### Usage
 
 ```js
 
@@ -87,7 +98,7 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 ```
 
-# `API`
+# API
 
 API section covers:
 
@@ -95,7 +106,7 @@ API section covers:
 2. Methods
 3. Data types
 
-# `Options`
+# Options
 
 Options object must be passed passed to new ClientPortal constructor. `url` parameter is required. The rest are optional.
 
@@ -109,7 +120,7 @@ new ClientPortal(clientPortalElement, options);
 
 ```
 
-## `Core Options`
+## Core Options
 
 ### `url` [REQUIRED]
 
@@ -367,7 +378,7 @@ Callback fires when dropdown opened only on mobile mode closes.
 ***
 
 
-## `Methods`
+## Methods
 
 Metods can be used on embeded Client Portal object. All methods returns promise which is resolved on response from server.
 
@@ -416,11 +427,11 @@ Returns info if user is authenticated.
 
 Returns iframe element.
 
-## `Clent` Portal types
+## Client Portal types
 
 Types listed below are used as retrun types or parameters in options and methods. 
 
-### `ClientPortal`.State
+### `ClientPortal.State`
 
 Can be used in implementing own navigation, using goTo() method.
 

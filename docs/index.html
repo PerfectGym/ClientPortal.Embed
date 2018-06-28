@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal Integration</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/@perfectgym/client-portal/dist/ClientPortal.css"></link>
+    <link rel="stylesheet" href="./style.css"></link>
 </head>
 
 <body>
@@ -53,11 +56,10 @@
     <div class="page-footer">Visit GitHub for documentation</div>
 
     <!-- I have a problem with including this library with webpack -->
-    <script src="libs/iframeResizer.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@3.6.1/js/iframeResizer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
     <script src="index.js"></script>
-    <script src="libs/ClientPortal.min.js"></script>
-    <link rel="stylesheet" href="libs/ClientPortal.css"></link>
-    <link rel="stylesheet" href="./style.css"></link>
 </body>
 
 </html>
