@@ -245,6 +245,8 @@ var ClientPortal = /** @class */ (function () {
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
+                if (data.toState.name == "Auth.Login")
+                    this._forceResize();
                 if (!options.enableVirtualStates && data.isVirtual)
                     break;
                 options.onStateChangeSuccess && options.onStateChangeSuccess(data);
@@ -375,9 +377,13 @@ var ClientPortal = /** @class */ (function () {
         cookieInputEl.style.opacity = "0.000001";
         this._elementWrapper.appendChild(cookieInputEl);
         window.removeInput = function () {
-            console.log(_this._elementWrapper, cookieInputEl);
             _this._elementWrapper.removeChild(cookieInputEl);
         };
+    };
+    ClientPortal.prototype._forceResize = function () {
+        var element = this._element;
+        element.style.height = "";
+        element.iFrameResizer.resize();
     };
     ClientPortal.prototype.goTo = function (state, params) {
         var data = {

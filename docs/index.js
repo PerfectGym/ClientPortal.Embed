@@ -5,7 +5,8 @@ window.onload = function () {
     var ClientPortal = PerfectGym.ClientPortal;
 
     var options = {
-        url: "https://presentation.perfectgym.pl/ClientPortal2/",
+        // url: "https://presentation.perfectgym.pl/ClientPortal2/",
+        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2/",
         loginPage: {
             navbar: false,
             backgroundImage: true
@@ -45,8 +46,8 @@ window.onload = function () {
             }
         },
 
-        onStateChangeSuccess(fromState, toState) {
-            console.log("stateChanged from: ", fromState, " to:", toState);
+        onStateChangeSuccess(data) {
+            console.log("stateChanged from: ", data.fromState, " to:", data.toState);
         }
     };
 

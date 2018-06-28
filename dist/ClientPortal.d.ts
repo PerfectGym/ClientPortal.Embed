@@ -199,6 +199,7 @@ export declare class ClientPortal {
     private _serializeParams(paramsObject);
     private _sendData(action, data?);
     private _setCookieOnParent();
+    private _forceResize();
     goTo(state: string, params?: Object): Promise<{}>;
     logout(): Promise<{}>;
     changeLanguage(languageCode: string): Promise<{}>;

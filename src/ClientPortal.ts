@@ -455,6 +455,10 @@ export class ClientPortal {
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
+
+                if (data.toState.name == "Auth.Login")
+                    this._forceResize();
+
                 if (!options.enableVirtualStates && data.isVirtual)
                     break;
                 options.onStateChangeSuccess && options.onStateChangeSuccess(data);
@@ -612,9 +616,16 @@ export class ClientPortal {
         this._elementWrapper.appendChild(cookieInputEl);
         
         (window as any).removeInput = () => {
-            console.log(this._elementWrapper, cookieInputEl)
             this._elementWrapper.removeChild(cookieInputEl);
         }
+    }
+
+    private _forceResize() {
+        var element: any = this._element;
+
+        
+        element.style.height = "";
+        element.iFrameResizer.resize();
     }
 
     public goTo(state: string, params?: Object) {
