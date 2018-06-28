@@ -5,8 +5,7 @@ window.onload = function () {
     var ClientPortal = PerfectGym.ClientPortal;
 
     var options = {
-        // url: "https://presentation.perfectgym.pl/ClientPortal2/",
-        url: "http://pure.waw-parzyszek7.creadhoc.local/ClientPortal2/",
+        url: "https://presentation.perfectgym.pl/ClientPortal2/",
         loginPage: {
             navbar: false,
             backgroundImage: true

@@ -124,7 +124,7 @@ body {
 }
 
 #pg-client-portal > iframe {
-  //min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
 }
 
 .page-footer {
