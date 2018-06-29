@@ -71,7 +71,7 @@ After scripts form 2nd point add:
 
 4. Reload your page
 
-[Click here to play with live demo](https://jsfiddle.net/bez9wgyk).
+[Click here to play with live demo](https://jsfiddle.net/m3rhy76L).
 
 
 ## Installation
