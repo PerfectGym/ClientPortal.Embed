@@ -14,7 +14,7 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 * Has TypeScript support.
 
 
-[jsFiddle live demo](https://jsfiddle.net/bez9wgyk).
+[jsFiddle live demo](https://jsfiddle.net/m3rhy76L).
 
 [Demo with own navigation](https://perfectgym.github.io/ClientPortal.Embed/)
 
