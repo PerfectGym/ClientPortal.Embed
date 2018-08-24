@@ -555,8 +555,10 @@ export class ClientPortal {
 
         iframeElement.src = url + mode + language + '#/' + defaultState + params;
 
-        iframeElement.style.width = '100%';
         iframeElement.style.border = 'none';
+        iframeElement.style.width = '1px';
+        iframeElement.style.maxWidth = '100%';
+        iframeElement.style.minWidth = '100%';
 
         elementWrapper.appendChild(iframeElement);
         elementWrapper.classList.add(this._elementWrapperSelector);
