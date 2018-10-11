@@ -130,7 +130,7 @@ Client Portal application url. If Client Portal is hosted on PerfectGym domain c
 
 &nbsp;
 
-### `forcedUrl`
+### `forceUrl`
 
 * type: string
 

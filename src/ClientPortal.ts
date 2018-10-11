@@ -79,9 +79,9 @@ export interface ClientPortalOptions {
     url: string;
 
     /**
-     * Url thath will be loaded regarding url, default State and defaultStateParams.
+     * Url that will be loaded regarding `url`, `defaultState` and `defaultStateParams`.
      */
-    forcedUrl?: string;
+    forceUrl?: string;
 
     /**
      * First state showed to user after load. Unauthenticated users are redirected to ClientPortal.State.Login.
@@ -413,7 +413,7 @@ export class ClientPortal {
 
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
-                    if(!(options as any).forcedUrl)
+                    if(!(options as any).forceUrl)
                         this.goTo(options.defaultState || "Profile", options.defaultStateParams);
                     this._wasConnectedBefore = true;
                 }
@@ -559,7 +559,7 @@ export class ClientPortal {
 
         let params = '?' + this._serializeParams(options.defaultStateParams) || "";
 
-        iframeElement.src = (options as any).forcedUrl ||  url + mode + language + '#/' + defaultState + params;
+        iframeElement.src = (options as any).forceUrl ||  url + mode + language + '#/' + defaultState + params;
 
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';

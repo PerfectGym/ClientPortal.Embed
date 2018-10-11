@@ -55,9 +55,9 @@ export interface ClientPortalOptions {
      */
     url: string;
     /**
-     * Url thath will be loaded regarding url, default State and defaultStateParams.
+     * Url that will be loaded regarding `url`, `defaultState` and `defaultStateParams`.
      */
-    forcedUrl?: string;
+    forceUrl?: string;
     /**
      * First state showed to user after load. Unauthenticated users are redirected to ClientPortal.State.Login.
      */
@@ -191,19 +191,19 @@ export declare class ClientPortal {
         ProfileFamily: string;
     };
     constructor(wrapper: HTMLElement, options: ClientPortalOptions);
-    private _onMessage(msg, options, event);
-    private _onResponse(msg);
-    private _getIframeTopOffset();
-    private _getViewport(options);
-    private recieveMsg(msg, options);
-    private _createModalOverlay();
-    private _showModalOverlay();
-    private _hideModalOverlay();
-    private _createIframe(elementWrapper, options);
-    private _serializeParams(paramsObject);
-    private _sendData(action, data?);
-    private _setCookieOnParent();
-    private _forceResize();
+    private _onMessage;
+    private _onResponse;
+    private _getIframeTopOffset;
+    private _getViewport;
+    private recieveMsg;
+    private _createModalOverlay;
+    private _showModalOverlay;
+    private _hideModalOverlay;
+    private _createIframe;
+    private _serializeParams;
+    private _sendData;
+    private _setCookieOnParent;
+    private _forceResize;
     goTo(state: string, params?: Object): Promise<{}>;
     logout(): Promise<{}>;
     changeLanguage(languageCode: string): Promise<{}>;
