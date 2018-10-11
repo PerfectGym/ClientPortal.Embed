@@ -5,7 +5,8 @@ window.onload = function () {
     var ClientPortal = PerfectGym.ClientPortal;
 
     var options = {
-        url: "https://presentation.perfectgym.pl/ClientPortal2/",
+        url: "https://crunch.perfectgym.com.au/ClientPortal2/",
+        forcedUrl: "https://crunch.perfectgym.com.au/ClientPortal2/Registration/Start?ClubID=4",
         loginPage: {
             navbar: false,
             backgroundImage: true
@@ -56,7 +57,7 @@ window.onload = function () {
         var CP = new ClientPortal(element, options);
     }
 
-    window.getUserData = function() {
+    /*window.getUserData = function() {
         CP.isUserLoggedIn()
             .then(function(data) {
                 var navigationElement = document.getElementById('page-header');
@@ -68,7 +69,7 @@ window.onload = function () {
                 }
             });
 
-    }
+    }*/
 
     window.logout = function() {
         CP.logout()

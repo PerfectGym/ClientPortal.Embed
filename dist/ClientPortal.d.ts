@@ -55,6 +55,10 @@ export interface ClientPortalOptions {
      */
     url: string;
     /**
+     * Url thath will be loaded regarding url, default State and defaultStateParams.
+     */
+    forcedUrl?: string;
+    /**
      * First state showed to user after load. Unauthenticated users are redirected to ClientPortal.State.Login.
      */
     defaultState?: string;

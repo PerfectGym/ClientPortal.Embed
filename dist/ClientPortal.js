@@ -198,7 +198,8 @@ var ClientPortal = /** @class */ (function () {
                 };
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
-                    this.goTo(options.defaultState || "Profile", options.defaultStateParams);
+                    if (!options.forcedUrl)
+                        this.goTo(options.defaultState || "Profile", options.defaultStateParams);
                     this._wasConnectedBefore = true;
                 }
                 options.onConnect && options.onConnect();
@@ -327,7 +328,7 @@ var ClientPortal = /** @class */ (function () {
         this._companyUrl = url;
         var defaultState = options.defaultState || "Profile";
         var params = '?' + this._serializeParams(options.defaultStateParams) || "";
-        iframeElement.src = url + mode + language + '#/' + defaultState + params;
+        iframeElement.src = options.forcedUrl || url + mode + language + '#/' + defaultState + params;
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';
         iframeElement.style.maxWidth = '100%';
