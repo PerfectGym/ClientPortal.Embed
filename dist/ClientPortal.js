@@ -198,7 +198,8 @@ var ClientPortal = /** @class */ (function () {
                 };
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
-                    this.goTo(options.defaultState || "Profile", options.defaultStateParams);
+                    if (!options.forcedUrl)
+                        this.goTo(options.defaultState || "Profile", options.defaultStateParams);
                     this._wasConnectedBefore = true;
                 }
                 options.onConnect && options.onConnect();

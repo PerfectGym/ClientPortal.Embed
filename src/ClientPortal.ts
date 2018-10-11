@@ -413,8 +413,9 @@ export class ClientPortal {
 
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
-                  this.goTo(options.defaultState || "Profile", options.defaultStateParams);
-                  this._wasConnectedBefore = true;
+                    if(!(options as any).forcedUrl)
+                        this.goTo(options.defaultState || "Profile", options.defaultStateParams);
+                    this._wasConnectedBefore = true;
                 }
                 options.onConnect && options.onConnect();
                 break;
