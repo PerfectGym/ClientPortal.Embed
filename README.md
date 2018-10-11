@@ -130,6 +130,13 @@ Client Portal application url. If Client Portal is hosted on PerfectGym domain c
 
 &nbsp;
 
+### `forcedUrl`
+
+* type: string
+
+Url to Client Portal application. It will be loaded regarding `url`, `defaultState` or `defaultStateParams`.
+
+
 ### `defaultState`
 
 * type: ClientPortal.State
