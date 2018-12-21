@@ -133,3 +133,7 @@ $cp-load-mask-background: rgba($cp-load-mask-color-3, 0.7);
   right: 0;
   background: $cp-load-mask-background;
 }
+
+.cp-iframe-wrapper {
+  min-height: 620px;
+}

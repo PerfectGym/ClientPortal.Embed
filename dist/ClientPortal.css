@@ -125,3 +125,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+
+.cp-iframe-wrapper {
+  min-height: 620px;
+}
