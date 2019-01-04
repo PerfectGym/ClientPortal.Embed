@@ -368,7 +368,7 @@ var ClientPortal = /** @class */ (function () {
     ClientPortal.prototype._setCookieOnParent = function () {
         var _this = this;
         var url = this._companyUrl + "EmbedMode/SetCookie";
-        var onClickAction = "removeInput();window.open('" + url + "', '_blank');";
+        var onClickAction = "window.open('" + url + "', '_blank');removeInput();";
         var cookieInputEl = document.createElement("input");
         cookieInputEl.setAttribute("onclick", onClickAction);
         cookieInputEl.style.position = "absolute";
@@ -381,6 +381,9 @@ var ClientPortal = /** @class */ (function () {
         this._elementWrapper.appendChild(cookieInputEl);
         window.removeInput = function () {
             _this._elementWrapper.removeChild(cookieInputEl);
+            setTimeout(function () {
+                _this._element.contentWindow.location.replace(_this._element.src);
+            }, 300);
         };
     };
     ClientPortal.prototype._forceResize = function () {

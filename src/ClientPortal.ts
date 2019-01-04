@@ -609,7 +609,7 @@ export class ClientPortal {
     private _setCookieOnParent() {
         var url = this._companyUrl + "EmbedMode/SetCookie";
         
-        var onClickAction =  "removeInput();window.open('" + url + "', '_blank');";
+        var onClickAction =  "window.open('" + url + "', '_blank');removeInput();";
 
         var cookieInputEl = document.createElement("input");
         cookieInputEl.setAttribute("onclick", onClickAction);
@@ -625,6 +625,9 @@ export class ClientPortal {
         
         (window as any).removeInput = () => {
             this._elementWrapper.removeChild(cookieInputEl);
+            setTimeout(() => {
+                this._element.contentWindow.location.replace(this._element.src);
+            }, 300);
         }
     }
 
