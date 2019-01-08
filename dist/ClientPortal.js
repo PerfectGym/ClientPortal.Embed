@@ -378,6 +378,7 @@ var ClientPortal = /** @class */ (function () {
         cookieInputEl.style.right = "0";
         cookieInputEl.style.width = "100%";
         cookieInputEl.style.opacity = "0.000001";
+        this._elementWrapper.style.position = "relative";
         this._elementWrapper.appendChild(cookieInputEl);
         window.removeInput = function () {
             _this._elementWrapper.removeChild(cookieInputEl);

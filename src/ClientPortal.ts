@@ -621,6 +621,7 @@ export class ClientPortal {
         cookieInputEl.style.width = "100%";
         cookieInputEl.style.opacity = "0.000001";
 
+        this._elementWrapper.style.position = "relative";
         this._elementWrapper.appendChild(cookieInputEl);
         
         (window as any).removeInput = () => {
