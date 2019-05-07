@@ -121,8 +121,8 @@ var ClientPortal = /** @class */ (function () {
                 _this._onMessage(msg, options, event);
             }
         });
-        if (!options.hideLoadMask ||
-            (options.loadMask && !options.loadMask.disable)) {
+        if (!options.hideLoadMask &&
+            options.loadMask && !options.loadMask.disable) {
             addLoadMask();
             if (!options.hideInitLoadMask ||
                 (options.loadMask && options.loadMask.disableOnInit))
@@ -205,16 +205,18 @@ var ClientPortal = /** @class */ (function () {
                 options.onConnect && options.onConnect();
                 break;
             case 'showLoadMask':
-                if (!options.hideLoadMask ||
-                    (options.loadMask && !options.loadMask.disable))
+                if (!options.hideLoadMask &&
+                    options.loadMask && !options.loadMask.disable) {
                     showLoadMask();
+                }
                 options.onShowLoadMask && options.onShowLoadMask();
                 options.loadMask && options.loadMask.onShow && options.loadMask.onShow();
                 break;
             case 'hideLoadMask':
-                if (!options.hideLoadMask ||
-                    options.loadMask && !options.loadMask.disable)
+                if (!options.hideLoadMask &&
+                    options.loadMask && !options.loadMask.disable) {
                     hideLoadMask();
+                }
                 options.onHideLoadMask && options.onHideLoadMask();
                 options.loadMask && options.loadMask.onHide && options.loadMask.onHide();
                 break;

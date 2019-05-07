@@ -321,8 +321,8 @@ export class ClientPortal {
             }
         });
 
-        if (!options.hideLoadMask || 
-            (options.loadMask && !options.loadMask.disable)) {
+        if (!options.hideLoadMask && 
+            options.loadMask && !options.loadMask.disable) {
             addLoadMask();
             if(!options.hideInitLoadMask ||
                 (options.loadMask && options.loadMask.disableOnInit))
@@ -420,16 +420,18 @@ export class ClientPortal {
                 options.onConnect && options.onConnect();
                 break;
             case 'showLoadMask':
-                if(!options.hideLoadMask ||
-                    (options.loadMask && !options.loadMask.disable))
+                if(!options.hideLoadMask &&
+                    options.loadMask && !options.loadMask.disable) {
                     showLoadMask();
+                }
                 options.onShowLoadMask && options.onShowLoadMask();
                 options.loadMask && options.loadMask.onShow && options.loadMask.onShow();
                 break;
             case 'hideLoadMask':
-                if(!options.hideLoadMask ||
-                    options.loadMask && !options.loadMask.disable)
+                if(!options.hideLoadMask &&
+                    options.loadMask && !options.loadMask.disable) {
                     hideLoadMask();
+                }
                 options.onHideLoadMask && options.onHideLoadMask();
                 options.loadMask && options.loadMask.onHide && options.loadMask.onHide();
                 break;
