@@ -324,8 +324,8 @@ export class ClientPortal {
         if (!options.hideLoadMask && 
             options.loadMask && !options.loadMask.disable) {
             addLoadMask();
-            if(!options.hideInitLoadMask ||
-                (options.loadMask && options.loadMask.disableOnInit))
+            if(!options.hideInitLoadMask &&
+                options.loadMask && options.loadMask.disableOnInit)
                 showLoadMask();
         }
 
