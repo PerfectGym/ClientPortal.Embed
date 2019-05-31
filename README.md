@@ -20,6 +20,8 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 
 [Calendar embeding demo](https://perfectgym.github.io/ClientPortal.Embed/calendar)
 
+[Changelog](CHANGELOG.md)
+
 ## Embeding tips
 
 Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
@@ -157,6 +159,12 @@ State params from with which Client Portal will be loaded.
 
 If `language` option is not set Client Portal tries to use user's browser language. If browser language is not supported by Club's Client Portal then language is set to default Client Portal language.
 For list of avaliable languages in your company please contact PerfectGym support.
+
+### `minHeight`
+
+* type: number
+
+Client Portal min height in pixels.
 
 ### `onConnect` 
 
@@ -505,3 +513,6 @@ CP.goTo(ClientPortal.State.<STATE_FROM_LIST_BELOW>)
     params: Object //depends on current view
 }
 ```
+
+## Release notes
+

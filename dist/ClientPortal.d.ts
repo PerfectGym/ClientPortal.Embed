@@ -71,6 +71,10 @@ export interface ClientPortalOptions {
      */
     language?: string;
     /**
+     * Min iframe height
+     */
+    minHeight: number;
+    /**
      * Callback fired when iframe connects to Client Portal.
      */
     onConnect?(): void;

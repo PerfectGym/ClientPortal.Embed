@@ -194,7 +194,8 @@ var ClientPortal = /** @class */ (function () {
                     loginPage: options.loginPage || {},
                     navigation: options.navigation || {},
                     registration: options.registration || {},
-                    calendarPage: options.calendarPage || {}
+                    calendarPage: options.calendarPage || {},
+                    minHeight: options.minHeight
                 };
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {

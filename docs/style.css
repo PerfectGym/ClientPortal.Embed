@@ -123,10 +123,6 @@ body {
   border-color: rgba(5, 138, 215, 0.7);
 }
 
-#pg-client-portal > iframe {
-  min-height: calc(100vh - 50px);
-}
-
 .page-footer {
   height: 50px;
   background: white;

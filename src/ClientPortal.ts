@@ -99,6 +99,11 @@ export interface ClientPortalOptions {
     language?: string;
 
     /**
+     * Min iframe height
+     */
+    minHeight: number;
+
+    /**
      * Callback fired when iframe connects to Client Portal.
      */
     onConnect?(): void;
@@ -220,7 +225,8 @@ interface IConnectOptions {
     loginPage: LoginViewOptions,
     navigation: AfterLoginOptions,
     registration: RegistrationOptions,
-    calendarPage: CalendarPageOptions
+    calendarPage: CalendarPageOptions,
+    minHeight: number
 }
 
 interface IframeMessage {
@@ -348,7 +354,7 @@ export class ClientPortal {
         // If there wasn't any action performed it means that the communication comes from 
         // other library (seamless) it means that we shouldn't send response
         if (msg.action && msg.id)
-            event.source.postMessage(response, event.origin);
+            event.source.postMessage(response, event.origin as any);
     }
 
     private _onResponse(msg: IframeMessage) {
@@ -408,7 +414,8 @@ export class ClientPortal {
                     loginPage: options.loginPage || {},
                     navigation: options.navigation || {},
                     registration: options.registration || {},
-                    calendarPage: options.calendarPage || {}
+                    calendarPage: options.calendarPage || {},
+                    minHeight: options.minHeight
                 }
 
                 this._sendData('parent-connected', connectOptions);

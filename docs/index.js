@@ -16,6 +16,7 @@ window.onload = function () {
         registration: {
             logo: false
         },
+        minHeight: '1020',
         
         onConnect() {
             console.info('Connected to Client Portal');
@@ -35,7 +36,6 @@ window.onload = function () {
         },
 
         loadMask: {
-            disable: true,
             disableOnInit: true,
             onShow: function() {
                 console.log("Show load mask")
