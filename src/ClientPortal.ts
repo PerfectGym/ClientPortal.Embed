@@ -130,7 +130,13 @@ export interface ClientPortalOptions {
      * 
      * @default false
      */
-    enableVirtualStates?: boolean;    
+    enableVirtualStates?: boolean;
+
+    /** 
+     * If you have floating navigation which isn't pinned when page is scrolled to top then you needd to
+     * define `topOffset` property with floating navigation height.
+     */
+    topOffset?: number;
 
     /**
      * Callback on content scroll.
@@ -142,32 +148,32 @@ export interface ClientPortalOptions {
     /** 
      * login/register view. 
      */
-    loginPage?: LoginViewOptions,
+    loginPage?: LoginViewOptions;
 
     /**
      * calendar page view.
      */
-    calendarPage?: CalendarPageOptions,
+    calendarPage?: CalendarPageOptions;
 
     /**
      * Views visible after user login options.
      */
-    navigation?: AfterLoginOptions,
+    navigation?: AfterLoginOptions;
 
     /**
      * Registration options.
      */
-    registration?: RegistrationOptions
+    registration?: RegistrationOptions;
 
     /**
      * Load mask options.
      */    
-    loadMask?: LoadMaskOptions,
+    loadMask?: LoadMaskOptions;
 
     /**
      * Modal options.
      */
-    modal?: ModalOptions
+    modal?: ModalOptions;
 
     // OPTIONS BELOW ARE DEPRECATED
 
@@ -466,7 +472,7 @@ export class ClientPortal {
             case 'stateChangeSuccess':
                 // some browsers add scroll to html, some to body 
                 // that's why I scroll on both elements
-                let offsetTop = this._getIframeTopOffset();
+                let offsetTop = this._getIframeTopOffset() + (options.topOffset || 0);
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
@@ -488,10 +494,11 @@ export class ClientPortal {
                 options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
+                let topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
                 if (options.onContentScroll) {
-                    options.onContentScroll(data + this._getIframeTopOffset());
+                    options.onContentScroll(data + offsetTop);
                 } else {
-                    window.scroll({ top: data + this._getIframeTopOffset(), left: 0, behavior: 'smooth' });
+                    window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
             case 'setCookieOnParent':

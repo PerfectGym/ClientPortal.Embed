@@ -10,3 +10,9 @@ Features:
 
 Bugfixes:
 - sometimes not resizing Login Page on init load
+
+v1.7.0 (25.09.2019)
+-------------------
+
+Features: 
+- added `topOffset` option that improves floating navigation support

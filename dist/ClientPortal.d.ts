@@ -99,6 +99,10 @@ export interface ClientPortalOptions {
      */
     enableVirtualStates?: boolean;
     /**
+     * If you have floating navigation which isn't pinned
+     */
+    topOffset?: number;
+    /**
      * Callback on content scroll.
      *
      * @returns ScrollTop value which normally would be used to scroll window object.

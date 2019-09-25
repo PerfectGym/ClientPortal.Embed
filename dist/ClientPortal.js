@@ -245,7 +245,7 @@ var ClientPortal = /** @class */ (function () {
             case 'stateChangeSuccess':
                 // some browsers add scroll to html, some to body 
                 // that's why I scroll on both elements
-                var offsetTop = this._getIframeTopOffset();
+                var offsetTop = this._getIframeTopOffset() + (options.topOffset || 0);
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
@@ -265,11 +265,12 @@ var ClientPortal = /** @class */ (function () {
                 options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
+                var topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
                 if (options.onContentScroll) {
-                    options.onContentScroll(data + this._getIframeTopOffset());
+                    options.onContentScroll(data + offsetTop);
                 }
                 else {
-                    window.scroll({ top: data + this._getIframeTopOffset(), left: 0, behavior: 'smooth' });
+                    window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
             case 'setCookieOnParent':
