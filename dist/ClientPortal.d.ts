@@ -99,7 +99,8 @@ export interface ClientPortalOptions {
      */
     enableVirtualStates?: boolean;
     /**
-     * If you have floating navigation which isn't pinned
+     * If you have floating navigation which isn't pinned when page is scrolled to top then you needd to
+     * define `topOffset` property with floating navigation height.
      */
     topOffset?: number;
     /**
