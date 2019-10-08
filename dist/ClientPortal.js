@@ -322,6 +322,7 @@ var ClientPortal = /** @class */ (function () {
         }
     };
     ClientPortal.prototype._createIframe = function (elementWrapper, options) {
+        var _this = this;
         var iframeElement = document.createElement("iframe");
         var language = options && options.language ? "&lang=" + options.language : "";
         // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
@@ -339,6 +340,10 @@ var ClientPortal = /** @class */ (function () {
         iframeElement.style.minWidth = '100%';
         elementWrapper.appendChild(iframeElement);
         elementWrapper.classList.add(this._elementWrapperSelector);
+        iframeElement.onload = function () {
+            var topOffset = _this._getIframeTopOffset() + (options.topOffset || 0);
+            window.scroll({ top: topOffset, left: 0, behavior: 'smooth' });
+        };
         this._element = iframeElement;
         this._elementWrapper = elementWrapper;
     };

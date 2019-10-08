@@ -585,6 +585,12 @@ export class ClientPortal {
         elementWrapper.appendChild(iframeElement);
         elementWrapper.classList.add(this._elementWrapperSelector);
 
+        iframeElement.onload = () => {
+            let topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
+                
+            window.scroll({ top: topOffset, left: 0, behavior: 'smooth' });
+        }
+
         this._element = iframeElement;
         this._elementWrapper = elementWrapper;
     }
