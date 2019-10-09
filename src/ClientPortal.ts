@@ -214,7 +214,6 @@ export interface ClientPortalOptions {
      */
     onHideModal?(): void;
 
-
     /**
      * Callback fired when dropdown opens on mobile mode.
      */
@@ -224,7 +223,6 @@ export interface ClientPortalOptions {
      * Callback fired when dropdown closes on mobile mode.
      */
     onMobileDropdownClose?(): void;
-    
 }
 
 interface IConnectOptions {
@@ -472,7 +470,7 @@ export class ClientPortal {
             case 'stateChangeSuccess':
                 // some browsers add scroll to html, some to body 
                 // that's why I scroll on both elements
-                let offsetTop = this._getIframeTopOffset() + (options.topOffset || 0);
+                let offsetTop = this._getIframeTopOffset() - (options.topOffset || 0);
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
@@ -494,7 +492,7 @@ export class ClientPortal {
                 options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
-                let topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
+                let topOffset = this._getIframeTopOffset() - (options.topOffset || 0);
                 if (options.onContentScroll) {
                     options.onContentScroll(data + offsetTop);
                 } else {
@@ -586,7 +584,7 @@ export class ClientPortal {
         elementWrapper.classList.add(this._elementWrapperSelector);
 
         iframeElement.onload = () => {
-            let topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
+            let topOffset = this._getIframeTopOffset() - (options.topOffset || 0);
                 
             window.scroll({ top: topOffset, left: 0, behavior: 'smooth' });
         }

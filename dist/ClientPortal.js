@@ -245,7 +245,7 @@ var ClientPortal = /** @class */ (function () {
             case 'stateChangeSuccess':
                 // some browsers add scroll to html, some to body 
                 // that's why I scroll on both elements
-                var offsetTop = this._getIframeTopOffset() + (options.topOffset || 0);
+                var offsetTop = this._getIframeTopOffset() - (options.topOffset || 0);
                 if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
@@ -265,7 +265,7 @@ var ClientPortal = /** @class */ (function () {
                 options.modal && options.modal.onMobileClose && options.modal.onMobileClose();
                 break;
             case 'scrollWindow':
-                var topOffset = this._getIframeTopOffset() + (options.topOffset || 0);
+                var topOffset = this._getIframeTopOffset() - (options.topOffset || 0);
                 if (options.onContentScroll) {
                     options.onContentScroll(data + offsetTop);
                 }
@@ -341,7 +341,7 @@ var ClientPortal = /** @class */ (function () {
         elementWrapper.appendChild(iframeElement);
         elementWrapper.classList.add(this._elementWrapperSelector);
         iframeElement.onload = function () {
-            var topOffset = _this._getIframeTopOffset() + (options.topOffset || 0);
+            var topOffset = _this._getIframeTopOffset() - (options.topOffset || 0);
             window.scroll({ top: topOffset, left: 0, behavior: 'smooth' });
         };
         this._element = iframeElement;
