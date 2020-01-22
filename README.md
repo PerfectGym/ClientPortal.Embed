@@ -128,7 +128,7 @@ new ClientPortal(clientPortalElement, options);
 
 * type: string 
 
-Client Portal application url. If Client Portal is hosted on PerfectGym domain correct url looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/`
+Client Portal application url without fragment(the part before #). If Client Portal is hosted on PerfectGym domain correct url looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/`.
 
 &nbsp;
 
@@ -136,7 +136,7 @@ Client Portal application url. If Client Portal is hosted on PerfectGym domain c
 
 * type: string
 
-Url to Client Portal application. It will be loaded regarding `url`, `defaultState` or `defaultStateParams`.
+Url to Client Portal application. It will be loaded regarding `url`, `defaultState` or `defaultStateParams` as the first page that user sees on the embeded Client Portal. It's main functionality is to give simple way of displaying calendar with predefined filters on your page. Example `forceUrl` value looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/#/Classes/1/Calendar?timeTableId=12&trainerId=92`. Domain from this param must match domain in `url` param.
 
 
 ### `defaultState`
