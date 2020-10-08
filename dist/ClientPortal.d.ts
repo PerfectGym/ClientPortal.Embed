@@ -28,6 +28,7 @@ export interface LoginViewOptions {
 }
 export interface CalendarPageOptions {
     hideBookingIfNotLogged?: boolean;
+    disableCourseEnrollment?: boolean;
 }
 export interface AfterLoginOptions {
     hide?: boolean;
