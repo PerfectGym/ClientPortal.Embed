@@ -1,4 +1,4 @@
-import "src/ClientPortal.less";
+import './ClientPortal.less';
 export interface ClientPortalStateInfo {
     auth: boolean;
     name: string;
@@ -200,22 +200,22 @@ export declare class ClientPortal {
         ProfileFamily: string;
     };
     constructor(wrapper: HTMLElement, options: ClientPortalOptions);
-    private _onMessage(msg, options, event);
-    private _onResponse(msg);
-    private _getIframeTopOffset();
-    private _getViewport(options);
-    private recieveMsg(msg, options);
-    private _createModalOverlay();
-    private _showModalOverlay();
-    private _hideModalOverlay();
-    private _createIframe(elementWrapper, options);
-    private _serializeParams(paramsObject);
-    private _sendData(action, data?);
-    private _setCookieOnParent();
-    private _forceResize();
-    goTo(state: string, params?: Object): Promise<{}>;
-    logout(): Promise<{}>;
-    changeLanguage(languageCode: string): Promise<{}>;
-    isUserLoggedIn(): Promise<{}>;
+    private _onMessage;
+    private _onResponse;
+    private _getIframeTopOffset;
+    private _getViewport;
+    private recieveMsg;
+    private _createModalOverlay;
+    private _showModalOverlay;
+    private _hideModalOverlay;
+    private _createIframe;
+    private _serializeParams;
+    private _sendData;
+    private _setCookieOnParent;
+    private _forceResize;
+    goTo(state: string, params?: Object): Promise<unknown>;
+    logout(): Promise<unknown>;
+    changeLanguage(languageCode: string): Promise<unknown>;
+    isUserLoggedIn(): Promise<unknown>;
     getElement(): HTMLIFrameElement;
 }

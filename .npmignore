@@ -1,2 +1,6 @@
 docs/
 _config.yml
+webpack.config.js
+yarn.lock
+.vscode
+tsconfig.json

@@ -12,21 +12,12 @@
       "moduleResolution": "node",
       "target": "es5",
       "declaration": true,
-      "typeRoots": [
-        "./src/definitions",
-        "./typings/@types",
-        "./node_modules/@types"
-      ],
       "outDir": "dist",
       "baseUrl": ".",
-      "paths": {
-        "app/*": [ "src/Modules/*" ]
-      }
+  
     },
     "include": [
-      ".",
-      "src/**/*",
-      "typings/globals/**/*"
+      "src/**/*"
     ]
   }
   

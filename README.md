@@ -3,6 +3,7 @@
 # Perfect Gym Client Portal Embed 
 [![npm version](https://badge.fury.io/js/%40perfectgym%2Fclient-portal.svg)](https://badge.fury.io/js/%40perfectgym%2Fclient-portal)
 [![NPM Downloads](https://img.shields.io/npm/dt/@perfectgym/client-portal.svg)](https://www.npmjs.com/package/@perfectgym/client-portal)
+[![](https://data.jsdelivr.com/v1/package/npm/@perfectgym/client-portal/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@perfectgym/client-portal)
 
 This library is the best way for your company to embed PerfectGym's Client Portal on your site. It provides a range of features which covers intergration needs:
 

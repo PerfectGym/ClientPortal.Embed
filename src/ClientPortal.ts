@@ -1,16 +1,15 @@
-
-import "src/ClientPortal.less"
+import './ClientPortal.less';
 
 export interface ClientPortalStateInfo {
-    auth: boolean,
-    name: string,
-    params: Object
+    auth: boolean;
+    name: string;
+    params: Object;
 }
 
 export interface ClientPortalChangeStateInfo {
-    fromState: ClientPortalStateInfo,
-    toState: ClientPortalStateInfo,
-    isVirtual: boolean
+    fromState: ClientPortalStateInfo;
+    toState: ClientPortalStateInfo;
+    isVirtual: boolean;
 }
 
 export interface ClientPortalUserInfo {
@@ -28,48 +27,48 @@ export interface ClientPortalAuthInfo {
 }
 
 export interface LoginViewOptions {
-    navbar?: boolean,
-    logo?: boolean,
-    backgroundImage?: boolean
+    navbar?: boolean;
+    logo?: boolean;
+    backgroundImage?: boolean;
 }
 
 export interface CalendarPageOptions {
-    hideBookingIfNotLogged?: boolean
+    hideBookingIfNotLogged?: boolean;
 }
 
 export interface AfterLoginOptions {
-    hide?: boolean,
-    logo?: boolean
+    hide?: boolean;
+    logo?: boolean;
 }
 
 export interface RegistrationOptions {
-    logo?: boolean
+    logo?: boolean;
 }
 
 export interface LoadMaskOptions {
     // Decides whether to show default Client Portal load mask.
-    disable?: boolean,
+    disable?: boolean;
     // Decides whether to hide load mask on initializing iframe.
-    disableOnInit?: boolean,
+    disableOnInit?: boolean;
     // Callback fired when Client Portal normally shows load mask.
-    onShow?: Function,
+    onShow?: Function;
     // Callback fired when Client Portal normally hides load mask.
-    onHide?: Function
+    onHide?: Function;
 }
 
 export interface ModalOptions {
-    // Decides whether to show modal overlay layer on top and bottom of the iframe. 
+    // Decides whether to show modal overlay layer on top and bottom of the iframe.
     // Overlay covers elements outside of iframe on parent element to focus user attention
     // on popups and other elements opened in Client Portal.
-    disableOverlay: boolean,
+    disableOverlay: boolean;
     // Callback fired when Client Portal shows modal.
-    onShow: Function,
+    onShow: Function;
     // Callback fired when Client Portal hides modal.
-    onHide: Function,
+    onHide: Function;
     // Callback fired when dropdown opens on mobile mode.
-    onMobileOpen: Function,
+    onMobileOpen: Function;
     // Callback fired when dropdown closes on mobile mode.
-    onMobileClose: Function
+    onMobileClose: Function;
 }
 
 export interface ClientPortalOptions {
@@ -125,14 +124,14 @@ export interface ClientPortalOptions {
 
     /**
      * Some of Client Portal states are virtual - they shouldn't be added to browser history.
-     * Setting this flag to true means that in onStateChangeSuccess() callback function 
+     * Setting this flag to true means that in onStateChangeSuccess() callback function
      * you will get object with property isVirtual which means that state is virtual.
-     * 
+     *
      * @default false
      */
     enableVirtualStates?: boolean;
 
-    /** 
+    /**
      * If you have floating navigation which isn't pinned when page is scrolled to top then you needd to
      * define `topOffset` property with floating navigation height.
      */
@@ -140,13 +139,13 @@ export interface ClientPortalOptions {
 
     /**
      * Callback on content scroll.
-     * 
-     * @returns ScrollTop value which normally would be used to scroll window object. 
+     *
+     * @returns ScrollTop value which normally would be used to scroll window object.
      */
     onContentScroll?(scrollTop: number): void;
 
-    /** 
-     * login/register view. 
+    /**
+     * login/register view.
      */
     loginPage?: LoginViewOptions;
 
@@ -167,7 +166,7 @@ export interface ClientPortalOptions {
 
     /**
      * Load mask options.
-     */    
+     */
     loadMask?: LoadMaskOptions;
 
     /**
@@ -198,7 +197,7 @@ export interface ClientPortalOptions {
     onHideLoadMask?(): void;
 
     /**
-     * Decides whether to show modal overlay layer on top and bottom of the iframe. 
+     * Decides whether to show modal overlay layer on top and bottom of the iframe.
      * Overlay covers elements outside of iframe on parent element to focus user attention
      * on popups and other elements opened in Client Portal.
      */
@@ -226,26 +225,25 @@ export interface ClientPortalOptions {
 }
 
 interface IConnectOptions {
-    loginPage: LoginViewOptions,
-    navigation: AfterLoginOptions,
-    registration: RegistrationOptions,
-    calendarPage: CalendarPageOptions,
-    minHeight: number
+    loginPage: LoginViewOptions;
+    navigation: AfterLoginOptions;
+    registration: RegistrationOptions;
+    calendarPage: CalendarPageOptions;
+    minHeight: number;
 }
 
 interface IframeMessage {
-    isResponse: boolean,
-    data: any,
-    action: string,
-    id: number
+    isResponse: boolean;
+    data: any;
+    action: string;
+    id: number;
 }
 
 let loadMaskEl: HTMLElement;
-let iframeResize = (window as any).iFrameResize
+let iframeResize = (window as any).iFrameResize;
 
 function addLoadMask() {
-    if (loadMaskEl)
-        return;
+    if (loadMaskEl) return;
 
     let loadMaskSVG = `<svg class='cp-load-mask-spinner'
         width='65px'
@@ -279,7 +277,7 @@ export class ClientPortal {
 
     private _promiseResolveMap: any = {};
 
-    private _wasConnectedBefore:boolean = false;
+    private _wasConnectedBefore: boolean = false;
 
     private _companyUrl: string;
 
@@ -300,22 +298,19 @@ export class ClientPortal {
         ProfilePrepaid: 'Profile.Prepaid',
         ProfileChangePassword: 'Profile.ChangePassword',
         ProfilePayments: 'Profile.Payments',
-        ProfileFamily: 'Profile.Family'
-    }
+        ProfileFamily: 'Profile.Family',
+    };
 
-
-    constructor(wrapper: HTMLElement, options : ClientPortalOptions) {
-                if (!options || !options.url)
-            throw new Error("url is not defined");
+    constructor(wrapper: HTMLElement, options: ClientPortalOptions) {
+        if (!options || !options.url) throw new Error('url is not defined');
 
         this._createIframe(wrapper, options);
-        
-        window.addEventListener('message', (event: MessageEvent) => {
-            if (!event.data)
-                return;
 
-            // other liblaries has their own mechanism for parsing data which isn't compoatibile 
-            // with JSON.parse method if we cant parse message with json we can assume that this info 
+        window.addEventListener('message', (event: MessageEvent) => {
+            if (!event.data) return;
+
+            // other liblaries has their own mechanism for parsing data which isn't compoatibile
+            // with JSON.parse method if we cant parse message with json we can assume that this info
             // doesn't interest us
             let msg: IframeMessage;
             try {
@@ -331,39 +326,38 @@ export class ClientPortal {
             }
         });
 
-        if (!options.hideLoadMask && 
-            options.loadMask && !options.loadMask.disable) {
+        if (!options.hideLoadMask && options.loadMask && !options.loadMask.disable) {
             addLoadMask();
-            if(!options.hideInitLoadMask &&
-                options.loadMask && options.loadMask.disableOnInit)
+            if (!options.hideInitLoadMask && options.loadMask && options.loadMask.disableOnInit)
                 showLoadMask();
         }
 
-        let iframe = iframeResize({
-            checkOrigin: false,
-            warningTimeout: 15000
-        }, this._element);
+        let iframe = iframeResize(
+            {
+                checkOrigin: false,
+                warningTimeout: 15000,
+            },
+            this._element
+        );
     }
 
     private _onMessage(msg: IframeMessage, options: ClientPortalOptions, event: MessageEvent) {
-        let result = this.recieveMsg(msg , options);
-        
+        let result = this.recieveMsg(msg, options);
+
         let response = JSON.stringify({
             id: msg.id,
             isResponse: true,
             data: result,
-            action: msg.action
+            action: msg.action,
         });
 
-        // If there wasn't any action performed it means that the communication comes from 
+        // If there wasn't any action performed it means that the communication comes from
         // other library (seamless) it means that we shouldn't send response
-        if (msg.action && msg.id)
-            event.source.postMessage(response, event.origin as any);
+        if (msg.action && msg.id) (event.source.postMessage as any)(response, event.origin as any);
     }
 
     private _onResponse(msg: IframeMessage) {
-        if (!this._promiseResolveMap[msg.id])
-            throw new Error("No callback was specified");
+        if (!this._promiseResolveMap[msg.id]) throw new Error('No callback was specified');
 
         this._promiseResolveMap[msg.id](msg.data);
         delete this._promiseResolveMap[msg.id];
@@ -377,10 +371,10 @@ export class ClientPortal {
         while (elem) {
             if (elem.clientHeight !== elem.scrollHeight) {
                 // Additional if is needed bacause sometiome element's scrollHeight is larger than clientHeight
-                // event if there isn't any scroll. 
+                // event if there isn't any scroll.
                 // This situation can be observed when absolutely positioned child is added to an element.
                 let styles = getComputedStyle(elem);
-                if (styles.overflow === "auto" || styles.overflowY === "auto") 
+                if (styles.overflow === 'auto' || styles.overflowY === 'auto')
                     return offsetTop - elem.offsetTop;
             }
 
@@ -402,61 +396,56 @@ export class ClientPortal {
             top: boundingRect.top + window.scrollY,
             bottom: boundingRect.bottom,
             windowHeight: window.innerHeight,
-            scrollTop: window.scrollY
-        }
-    };
+            scrollTop: window.scrollY,
+        };
+    }
 
     private recieveMsg(msg: IframeMessage, options: ClientPortalOptions) {
         let action = msg.action;
         let data = msg.data;
         let result: any;
 
-        switch(action)
-        {
+        switch (action) {
             case 'child-connected':
                 var connectOptions: IConnectOptions = {
                     loginPage: options.loginPage || {},
                     navigation: options.navigation || {},
                     registration: options.registration || {},
                     calendarPage: options.calendarPage || {},
-                    minHeight: options.minHeight
-                }
+                    minHeight: options.minHeight,
+                };
 
                 this._sendData('parent-connected', connectOptions);
                 if (!this._wasConnectedBefore) {
-                    if(!(options as any).forceUrl)
-                        this.goTo(options.defaultState || "Profile", options.defaultStateParams);
+                    if (!(options as any).forceUrl)
+                        this.goTo(options.defaultState || 'Profile', options.defaultStateParams);
                     this._wasConnectedBefore = true;
                 }
                 options.onConnect && options.onConnect();
                 break;
             case 'showLoadMask':
-                if(!options.hideLoadMask &&
-                    options.loadMask && !options.loadMask.disable) {
+                if (!options.hideLoadMask && options.loadMask && !options.loadMask.disable) {
                     showLoadMask();
                 }
                 options.onShowLoadMask && options.onShowLoadMask();
                 options.loadMask && options.loadMask.onShow && options.loadMask.onShow();
                 break;
             case 'hideLoadMask':
-                if(!options.hideLoadMask &&
-                    options.loadMask && !options.loadMask.disable) {
+                if (!options.hideLoadMask && options.loadMask && !options.loadMask.disable) {
                     hideLoadMask();
                 }
                 options.onHideLoadMask && options.onHideLoadMask();
                 options.loadMask && options.loadMask.onHide && options.loadMask.onHide();
                 break;
             case 'showModalOverlay':
-                if (!options.hideModalOverlay ||
-                    options.modal && !options.modal.disableOverlay)
+                if (!options.hideModalOverlay || (options.modal && !options.modal.disableOverlay))
                     this._showModalOverlay();
                 options.onShowModal && options.onShowModal();
                 options.modal && options.modal.onShow && options.modal.onShow();
                 result = this._getViewport(options);
                 break;
             case 'hideModalOverlay':
-                if (!options.hideModalOverlay || 
-                    options.modal && !options.modal.disableOverlay)
+                if (!options.hideModalOverlay || (options.modal && !options.modal.disableOverlay))
                     this._hideModalOverlay();
                 options.onHideModal && options.onHideModal();
                 options.modal && options.modal.onHide && options.modal.onHide();
@@ -468,18 +457,19 @@ export class ClientPortal {
                 options.onUserLoggedOut && options.onUserLoggedOut(data);
                 break;
             case 'stateChangeSuccess':
-                // some browsers add scroll to html, some to body 
+                // some browsers add scroll to html, some to body
                 // that's why I scroll on both elements
                 let offsetTop = this._getIframeTopOffset() - (options.topOffset || 0);
-                if (document.body.scrollTop > offsetTop || document.documentElement.scrollTop > offsetTop) {
+                if (
+                    document.body.scrollTop > offsetTop ||
+                    document.documentElement.scrollTop > offsetTop
+                ) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
 
-                if (data.toState.name == "Auth.Login")
-                    this._forceResize();
+                if (data.toState.name == 'Auth.Login') this._forceResize();
 
-                if (!options.enableVirtualStates && data.isVirtual)
-                    break;
+                if (!options.enableVirtualStates && data.isVirtual) break;
                 options.onStateChangeSuccess && options.onStateChangeSuccess(data);
                 break;
             case 'mobileDropdownOpen':
@@ -508,11 +498,11 @@ export class ClientPortal {
     }
 
     private _createModalOverlay(): HTMLElement {
-        let overlayEl: HTMLElement = document.createElement("DIV");
+        let overlayEl: HTMLElement = document.createElement('DIV');
         overlayEl.classList.add(this._modalOverlaySelector);
 
         return overlayEl;
-    };
+    }
 
     private _showModalOverlay() {
         let boundingRect = this._element.getBoundingClientRect();
@@ -523,11 +513,11 @@ export class ClientPortal {
         topOverlay.style.height = '1000px';
 
         let bottomOverlay = this._createModalOverlay();
-        let bottomOverlayHeight: number = (bodyRect.bottom - boundingRect.bottom);
+        let bottomOverlayHeight: number = bodyRect.bottom - boundingRect.bottom;
         // todo: find out why -4 is needed
         bottomOverlay.style.bottom = (bottomOverlayHeight - 4) * -1 + 'px';
         bottomOverlay.style.height = bottomOverlayHeight + 'px';
-        
+
         let leftOverlay = this._createModalOverlay();
         leftOverlay.style.top = topOverlay.style.top;
         leftOverlay.style.bottom = bottomOverlay.style.bottom;
@@ -540,8 +530,7 @@ export class ClientPortal {
         rightOverlay.style.left = boundingRect.width + 'px';
         rightOverlay.style.right = -(bodyRect.right - boundingRect.right) + 'px';
 
-        if (!this._elementWrapper)
-            return;
+        if (!this._elementWrapper) return;
         this._elementWrapper.appendChild(topOverlay);
         this._elementWrapper.appendChild(bottomOverlay);
         this._elementWrapper.appendChild(leftOverlay);
@@ -549,31 +538,34 @@ export class ClientPortal {
     }
 
     private _hideModalOverlay() {
-        let parentElement = document.getElementsByClassName(this._elementWrapperSelector)[0] as HTMLElement;
+        let parentElement = document.getElementsByClassName(
+            this._elementWrapperSelector
+        )[0] as HTMLElement;
         let overlayElements = document.getElementsByClassName(this._modalOverlaySelector);
 
         let len = overlayElements.length;
         for (let i = 0; i < len; i += 1) {
-          parentElement.removeChild(overlayElements[0]);
+            parentElement.removeChild(overlayElements[0]);
         }
     }
 
     private _createIframe(elementWrapper: HTMLElement, options: ClientPortalOptions) {
-        let iframeElement: HTMLIFrameElement = document.createElement("iframe");
-        let language = options && options.language ? `&lang=${options.language}` : "";
-       // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
+        let iframeElement: HTMLIFrameElement = document.createElement('iframe');
+        let language = options && options.language ? `&lang=${options.language}` : '';
+        // iframeElement.setAttribute("sandbox", "allow-scripts allow-same-origin");
         let isMobile = window.innerWidth < 500 || window.innerHeight < 500;
         let mode = isMobile ? '?mode=mobile' : '?mode=desktop';
-        
+
         let url = (options as any).url;
-        url = url[url.length-1] === "/" ? url : url + "/";
+        url = url[url.length - 1] === '/' ? url : url + '/';
         this._companyUrl = url;
 
-        let defaultState = (options as any).defaultState || "Profile";
+        let defaultState = (options as any).defaultState || 'Profile';
 
-        let params = '?' + this._serializeParams(options.defaultStateParams) || "";
+        let params = '?' + this._serializeParams(options.defaultStateParams) || '';
 
-        iframeElement.src = (options as any).forceUrl ||  url + mode + language + '#/' + defaultState + params;
+        iframeElement.src =
+            (options as any).forceUrl || url + mode + language + '#/' + defaultState + params;
 
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';
@@ -585,21 +577,21 @@ export class ClientPortal {
 
         iframeElement.onload = () => {
             let topOffset = this._getIframeTopOffset() - (options.topOffset || 0);
-                
+
             window.scroll({ top: topOffset, left: 0, behavior: 'smooth' });
-        }
+        };
 
         this._element = iframeElement;
         this._elementWrapper = elementWrapper;
     }
 
     private _serializeParams(paramsObject: any) {
-        let paramsString = "";
+        let paramsString = '';
         for (let key in paramsObject) {
-            if (paramsString != "") {
-                paramsString += "&";
+            if (paramsString != '') {
+                paramsString += '&';
             }
-            paramsString += key + "=" + encodeURIComponent(paramsObject[key]);
+            paramsString += key + '=' + encodeURIComponent(paramsObject[key]);
         }
         return paramsString;
     }
@@ -609,63 +601,59 @@ export class ClientPortal {
         return new Promise((resolve: Function) => {
             let id = Math.round(Math.random() * 999999);
 
-            while(this._promiseResolveMap[id])
-                id = Math.round(Math.random() * 999999);
+            while (this._promiseResolveMap[id]) id = Math.round(Math.random() * 999999);
 
             let msg = {
                 isResponse: false,
                 action,
                 data,
-                id
+                id,
             };
 
             this._element.contentWindow.postMessage(JSON.stringify(msg), '*');
 
             this._promiseResolveMap[id] = resolve;
-
-        })
+        });
     }
 
     private _setCookieOnParent() {
-        var url = this._companyUrl + "EmbedMode/SetCookie";
-        
-        var onClickAction =  "window.open('" + url + "', '_blank');removeInput();";
+        var url = this._companyUrl + 'EmbedMode/SetCookie';
 
-        var cookieInputEl = document.createElement("input");
-        cookieInputEl.setAttribute("onclick", onClickAction);
-        cookieInputEl.style.position = "absolute";
-        cookieInputEl.style.top = "0";
-        cookieInputEl.style.bottom = "0";
-        cookieInputEl.style.left = "0";
-        cookieInputEl.style.right = "0";
-        cookieInputEl.style.width = "100%";
-        cookieInputEl.style.opacity = "0.000001";
+        var onClickAction = "window.open('" + url + "', '_blank');removeInput();";
 
-        this._elementWrapper.style.position = "relative";
+        var cookieInputEl = document.createElement('input');
+        cookieInputEl.setAttribute('onclick', onClickAction);
+        cookieInputEl.style.position = 'absolute';
+        cookieInputEl.style.top = '0';
+        cookieInputEl.style.bottom = '0';
+        cookieInputEl.style.left = '0';
+        cookieInputEl.style.right = '0';
+        cookieInputEl.style.width = '100%';
+        cookieInputEl.style.opacity = '0.000001';
+
+        this._elementWrapper.style.position = 'relative';
         this._elementWrapper.appendChild(cookieInputEl);
-        
+
         (window as any).removeInput = () => {
             this._elementWrapper.removeChild(cookieInputEl);
             setTimeout(() => {
                 this._element.contentWindow.location.replace(this._element.src);
             }, 300);
-        }
+        };
     }
 
     private _forceResize() {
         var element: any = this._element;
 
-        
-        element.style.height = "";
+        element.style.height = '';
         element.iFrameResizer.resize();
     }
 
     public goTo(state: string, params?: Object) {
-
         let data = {
             state,
-            params
-        }
+            params,
+        };
 
         return this._sendData('goToState', data);
     }
@@ -675,14 +663,14 @@ export class ClientPortal {
     }
 
     public changeLanguage(languageCode: string) {
-        return this._sendData('changeLanguage', languageCode)
+        return this._sendData('changeLanguage', languageCode);
     }
 
     public isUserLoggedIn() {
         return this._sendData('isUserLogged');
     }
 
-    public getElement():HTMLIFrameElement {
-      return this._element;
+    public getElement(): HTMLIFrameElement {
+        return this._element;
     }
 }

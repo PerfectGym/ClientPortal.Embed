@@ -1,93 +1,59 @@
 // This is a node tool to resolve paths.
 var path = require('path');
-// We need this to use the CommonsChunkPlugin.
-var webpack = require('webpack');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-var LessLoader = ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [{
-            loader: "css-loader"
-        },
-        {
-            loader: "resolve-url-loader"
-        },
-        {
-            loader: "less-loader",
-            options: {
-                sourceMap: true
-            }
-        }
-    ]
-});
-
-var typescript = require('awesome-typescript-loader');
-
-module.exports = env => {
-
-    var buildOutput = {
-        path: path.resolve('./dist'),
-        filename: '[name].js',
-        sourceMapFilename: '[name].js.map',
-        library: 'PerfectGym',
-    };
-    
-    var buildConfig = env && env.WEBPACK_BUILD_CONFIG;
-    
-    if (buildConfig === "umd") {
-        var buildOutput = {
-            path: path.resolve('./dist'),
-            filename: '[name].common.js',
-            sourceMapFilename: '[name].common.js.map',
-            library: 'perfectgym-client-portal',
-            libraryTarget: 'umd',
-            umdNamedDefine: true
-        };
-    }
+module.exports = function (x, env) {
+    const prod = env.mode === 'production';
 
     return {
         target: 'web',
+        mode: prod ? 'production' : 'development',
         entry: {
-            'ClientPortal': './src/ClientPortal.ts',
-            'ClientPortal.min': './src/ClientPortal.ts'
+            ClientPortal: './src/ClientPortal.ts',
         },
-        output: buildOutput,
+        output: {
+            path: path.resolve('./dist'),
+            filename: prod ? '[name].min.js' : '[name].js',
+            sourceMapFilename: prod ? '[name].min.js.map' : '[name].js.map',
+            library: 'PerfectGym',
+        },
         resolve: {
-            extensions: [
-                '.ts',
-                '.tsx',
-                '.js'
-            ],
-            plugins: [
-                // this plugin must exceptionally be loaded from here
-                // otherwise TS paths config will not work
-                new typescript.TsConfigPathsPlugin()
-            ],
+            extensions: ['.ts', '.tsx', '.js'],
         },
         module: {
-            loaders: [{
+            rules: [
+                {
                     test: /\.ts$/,
-                    exclude: /\.d.ts$/,
-                    loader: 'awesome-typescript-loader'
+                    loader: 'ts-loader',
                 },
                 {
                     test: /\.less$/,
-                    loader: LessLoader
-                }
-            ]
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                    ],
+                },
+            ],
         },
         plugins: [
-            new ExtractTextPlugin({
-                filename: "ClientPortal.css"
+            new MiniCssExtractPlugin({
+                filename: 'ClientPortal.css',
             }),
-            new typescript.CheckerPlugin(),
-            new UglifyJsPlugin({
-                include: /\.min\.js$/,
-                compress: { warnings: false },
-                output: { comments: false },
-            })
-        ]
+        ],
+        optimization: {
+            minimizer: [
+                new TerserJSPlugin({}), 
+                new OptimizeCSSAssetsPlugin({})
+            ],
+        },
     };
-}
+};
