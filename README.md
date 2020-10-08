@@ -46,7 +46,7 @@ At the end of `<head>` add:
 At the end of `<body>` tag add:
 ```html  
 
-<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@3.6.1/js/iframeResizer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
 
 ```
@@ -213,6 +213,12 @@ If you have floating navigation which isn't pinned when page is scrolled to top 
     * default: false
 
 Hides "Book now" button on calendar when user is not logged. This function is usefull when you want to elmbed only calendar on your site.
+
+### `disableCourseEnrollment`
+    * type: boolean
+    * default: false
+
+Disables a possibillity to enroll for a course from within an embedded ClientPortal.
 
 ***
 

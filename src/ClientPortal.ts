@@ -34,6 +34,7 @@ export interface LoginViewOptions {
 
 export interface CalendarPageOptions {
     hideBookingIfNotLogged?: boolean;
+    disableCourseEnrollment?: boolean;
 }
 
 export interface AfterLoginOptions {
@@ -353,7 +354,7 @@ export class ClientPortal {
 
         // If there wasn't any action performed it means that the communication comes from
         // other library (seamless) it means that we shouldn't send response
-        if (msg.action && msg.id) (event.source.postMessage as any)(response, event.origin as any);
+        if (msg.action && msg.id) (event.source.postMessage as any)(response, '*');
     }
 
     private _onResponse(msg: IframeMessage) {
