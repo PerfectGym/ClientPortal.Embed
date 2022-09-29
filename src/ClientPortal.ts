@@ -490,9 +490,6 @@ export class ClientPortal {
                     window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
-            case 'setCookieOnParent':
-                this._setCookieOnParent();
-                break;
         }
 
         return result;
@@ -616,33 +613,7 @@ export class ClientPortal {
             this._promiseResolveMap[id] = resolve;
         });
     }
-
-    private _setCookieOnParent() {
-        var url = this._companyUrl + 'EmbedMode/SetCookie';
-
-        var onClickAction = "window.open('" + url + "', '_blank');removeInput();";
-
-        var cookieInputEl = document.createElement('input');
-        cookieInputEl.setAttribute('onclick', onClickAction);
-        cookieInputEl.style.position = 'absolute';
-        cookieInputEl.style.top = '0';
-        cookieInputEl.style.bottom = '0';
-        cookieInputEl.style.left = '0';
-        cookieInputEl.style.right = '0';
-        cookieInputEl.style.width = '100%';
-        cookieInputEl.style.opacity = '0.000001';
-
-        this._elementWrapper.style.position = 'relative';
-        this._elementWrapper.appendChild(cookieInputEl);
-
-        (window as any).removeInput = () => {
-            this._elementWrapper.removeChild(cookieInputEl);
-            setTimeout(() => {
-                this._element.contentWindow.location.replace(this._element.src);
-            }, 300);
-        };
-    }
-
+    
     private _forceResize() {
         var element: any = this._element;
 

@@ -287,9 +287,6 @@ var ClientPortal = /** @class */ (function () {
                     window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
-            case 'setCookieOnParent':
-                this._setCookieOnParent();
-                break;
         }
         return result;
     };
@@ -387,28 +384,6 @@ var ClientPortal = /** @class */ (function () {
             _this._element.contentWindow.postMessage(JSON.stringify(msg), '*');
             _this._promiseResolveMap[id] = resolve;
         });
-    };
-    ClientPortal.prototype._setCookieOnParent = function () {
-        var _this = this;
-        var url = this._companyUrl + 'EmbedMode/SetCookie';
-        var onClickAction = "window.open('" + url + "', '_blank');removeInput();";
-        var cookieInputEl = document.createElement('input');
-        cookieInputEl.setAttribute('onclick', onClickAction);
-        cookieInputEl.style.position = 'absolute';
-        cookieInputEl.style.top = '0';
-        cookieInputEl.style.bottom = '0';
-        cookieInputEl.style.left = '0';
-        cookieInputEl.style.right = '0';
-        cookieInputEl.style.width = '100%';
-        cookieInputEl.style.opacity = '0.000001';
-        this._elementWrapper.style.position = 'relative';
-        this._elementWrapper.appendChild(cookieInputEl);
-        window.removeInput = function () {
-            _this._elementWrapper.removeChild(cookieInputEl);
-            setTimeout(function () {
-                _this._element.contentWindow.location.replace(_this._element.src);
-            }, 300);
-        };
     };
     ClientPortal.prototype._forceResize = function () {
         var element = this._element;

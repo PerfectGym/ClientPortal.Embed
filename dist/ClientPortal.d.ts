@@ -212,7 +212,6 @@ export declare class ClientPortal {
     private _createIframe;
     private _serializeParams;
     private _sendData;
-    private _setCookieOnParent;
     private _forceResize;
     goTo(state: string, params?: Object): Promise<unknown>;
     logout(): Promise<unknown>;
