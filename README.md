@@ -23,12 +23,12 @@ This library is the best way for your company to embed PerfectGym's Client Porta
 
 [Changelog](CHANGELOG.md)
 
-## Embeding tips
+## Embedding tips
 
-Embeded Client Portal has transparent background, basic brandings looks best on grey/blurred image background.
-To maintain best responsivenes it is recommended to set your Embeded Client Portal width to full page width. 
+Embedded Client Portal has transparent background, basic branding looks best on grey/blurred image background.
+To maintain best responsiveness it is recommended to set your Embedded Client Portal width to full page width. 
 
-## The simplest way of embeding Client Portal on your site
+## The simplest way of embedding Client Portal on your site
 
 We recommend including ClientPortal.Embed and iframe-resizer using [jsDelivr](https://www.jsdelivr.com) CDN.
 
@@ -66,7 +66,7 @@ After scripts form 2nd point add:
             url: "CLIENT_PORTAL_URL"
         }
 
-        var embededClientPortal = new ClientPortal(clientPortalElement, options);
+        var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
     }
 </script>
 
@@ -97,7 +97,7 @@ var options = {
     url: "CLIENT_PORTAL_URL"
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 
 ```
 
@@ -105,7 +105,7 @@ var embededClientPortal = new ClientPortal(clientPortalElement, options);
 
 API section covers:
 
-1. Constructior options [Core Options](#core-options)
+1. Constructor options [Core Options](#core-options)
 2. Methods
 3. Data types
 
@@ -137,7 +137,7 @@ Client Portal application url without fragment(the part before #). If Client Por
 
 * type: string
 
-Url to Client Portal application. It will be loaded regarding `url`, `defaultState` or `defaultStateParams` as the first page that user sees on the embeded Client Portal. It's main functionality is to give simple way of displaying calendar with predefined filters on your page. Example `forceUrl` value looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/#/Classes/1/Calendar?timeTableId=12&trainerId=92`. Domain from this option must match domain in `url` option.
+Url to Client Portal application. It will be loaded regarding `url`, `defaultState` or `defaultStateParams` as the first page that user sees on the embedded Client Portal. It's main functionality is to give simple way of displaying calendar with predefined filters on your page. Example `forceUrl` value looks like: `https://CLUB_NAME.perfectgym.pl/ClientPortal2/#/Classes/1/Calendar?timeTableId=12&trainerId=92`. Domain from this option must match domain in `url` option.
 
 
 ### `defaultState`
@@ -156,10 +156,10 @@ State params from with which Client Portal will be loaded.
 
 ### `language`
 
-* type: string // Laguage code standarized by ISO 639-1
+* type: string // Language code standardized by ISO 639-1
 
 If `language` option is not set Client Portal tries to use user's browser language. If browser language is not supported by Club's Client Portal then language is set to default Client Portal language.
-For list of avaliable languages in your company please contact PerfectGym support.
+For list of available languages in your company please contact PerfectGym support.
 
 ### `minHeight`
 
@@ -218,13 +218,13 @@ Used to apply a specific branding theme.
     * type: boolean
     * default: false
 
-Hides "Book now" button on calendar when user is not logged. This function is usefull when you want to elmbed only calendar on your site.
+Hides "Book now" button on calendar when user is not logged. This function is useful when you want to embed only calendar on your site.
 
 ### `disableCourseEnrollment`
     * type: boolean
     * default: false
 
-Disables a possibillity to enroll for a course from within an embedded ClientPortal.
+Disables a possibility to enroll for a course from within an embedded ClientPortal.
 
 ***
 
@@ -239,7 +239,7 @@ var options = {
     }
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 
 ```
 
@@ -270,7 +270,7 @@ var options = {
     }
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 ```
 
 Options responsible for customizing navigation visible after user logs in.
@@ -296,7 +296,7 @@ var options = {
     }
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 ```
 
 Options responsible for customizing registration.
@@ -318,7 +318,7 @@ var options = {
     }
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 ```
 
 Options responsible for customizing load mask.
@@ -366,7 +366,7 @@ var options = {
     }
 }
 
-var embededClientPortal = new ClientPortal(clientPortalElement, options);
+var embeddedClientPortal = new ClientPortal(clientPortalElement, options);
 ```
 
 <!-- ### `hideModalOverlay` -->
@@ -415,7 +415,7 @@ Callback fires when dropdown opened only on mobile mode closes.
 
 ## Methods
 
-Metods can be used on embeded Client Portal object. All methods returns promise which is resolved on response from server.
+Methods can be used on embedded Client Portal object. All methods returns promise which is resolved on response from server.
 
 ### `goTo`
 
@@ -446,7 +446,7 @@ Logouts user.
 
 Changes client portal language.
 
-Laguage code is a two letters string standarized by ISO 639-1.
+Language code is a two letters string standardized by ISO 639-1.
 
 ### `isUserLoggedIn`
 
@@ -464,7 +464,7 @@ Returns iframe element.
 
 ## Client Portal types
 
-Types listed below are used as retrun types or parameters in options and methods. 
+Types listed below are used as return types or parameters in options and methods. 
 
 ### `ClientPortal.State`
 
