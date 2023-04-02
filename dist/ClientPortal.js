@@ -342,9 +342,10 @@ var ClientPortal = /** @class */ (function () {
         url = url[url.length - 1] === '/' ? url : url + '/';
         this._companyUrl = url;
         var defaultState = options.defaultState || 'Profile';
+        var branding = options && options.brandingId ? "&brandingId=".concat(options.brandingId) : '';
         var params = '?' + this._serializeParams(options.defaultStateParams) || 0;
         iframeElement.src =
-            options.forceUrl || url + mode + language + '#/' + defaultState + params;
+            options.forceUrl || url + mode + language + branding + '#/' + defaultState + params;
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';
         iframeElement.style.maxWidth = '100%';

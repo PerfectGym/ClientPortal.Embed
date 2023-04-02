@@ -204,6 +204,12 @@ This function is used to override default library scroll behaviour. `scrollTop` 
 Used to adjust scroll behaviour.
 If you have floating navigation which isn't pinned when page is scrolled to top and you have a bug in which field to which page is scrolled on validation error is hidden under floating navigation. Then `topOffset` property should have passed navigation height (as a number).
 
+### `brandingId`
+
+ * type: number
+
+Used to apply a specific branding theme.
+
 ***
 
 ## `calendarPage` options
