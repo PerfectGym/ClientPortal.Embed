@@ -490,6 +490,9 @@ export class ClientPortal {
                     window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
+            case 'setIFrameHeightToSpecificContent':
+                this._setIFrameHeightToSpecificContent(data);
+                break;
         }
 
         return result;
@@ -619,6 +622,11 @@ export class ClientPortal {
 
         element.style.height = '';
         element.iFrameResizer.resize();
+    }
+    
+    private _setIFrameHeightToSpecificContent(height: string){
+        this._element.style.height = height;
+        this._elementWrapper.style.height = height;
     }
 
     public goTo(state: string, params?: Object) {

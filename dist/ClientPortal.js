@@ -287,6 +287,9 @@ var ClientPortal = /** @class */ (function () {
                     window.scroll({ top: data + offsetTop, left: 0, behavior: 'smooth' });
                 }
                 break;
+            case 'setIFrameHeightToSpecificContent':
+                this._setIFrameHeightToSpecificContent(data);
+                break;
         }
         return result;
     };
@@ -389,6 +392,10 @@ var ClientPortal = /** @class */ (function () {
         var element = this._element;
         element.style.height = '';
         element.iFrameResizer.resize();
+    };
+    ClientPortal.prototype._setIFrameHeightToSpecificContent = function (height) {
+        this._element.style.height = height;
+        this._elementWrapper.style.height = height;
     };
     ClientPortal.prototype.goTo = function (state, params) {
         var data = {
