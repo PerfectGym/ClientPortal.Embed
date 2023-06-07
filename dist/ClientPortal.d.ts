@@ -172,6 +172,10 @@ export interface ClientPortalOptions {
      * Callback fired when dropdown closes on mobile mode.
      */
     onMobileDropdownClose?(): void;
+    /**
+     * Decides whether branding theme with provided identifier should be used.
+     */
+    brandingId?: number;
 }
 export declare class ClientPortal {
     private _element;
