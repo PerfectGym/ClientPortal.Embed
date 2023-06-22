@@ -217,6 +217,7 @@ export declare class ClientPortal {
     private _serializeParams;
     private _sendData;
     private _forceResize;
+    private _setIFrameHeightToSpecificContent;
     goTo(state: string, params?: Object): Promise<unknown>;
     logout(): Promise<unknown>;
     changeLanguage(languageCode: string): Promise<unknown>;
