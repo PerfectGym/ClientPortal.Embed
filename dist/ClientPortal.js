@@ -1,4 +1,3 @@
-var PerfectGym;
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -345,9 +344,10 @@ var ClientPortal = /** @class */ (function () {
         url = url[url.length - 1] === '/' ? url : url + '/';
         this._companyUrl = url;
         var defaultState = options.defaultState || 'Profile';
+        var branding = options && options.brandingId ? "&brandingId=".concat(options.brandingId) : '';
         var params = '?' + this._serializeParams(options.defaultStateParams) || 0;
         iframeElement.src =
-            options.forceUrl || url + mode + language + '#/' + defaultState + params;
+            options.forceUrl || url + mode + language + branding + '#/' + defaultState + params;
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';
         iframeElement.style.maxWidth = '100%';
@@ -441,6 +441,8 @@ var ClientPortal = /** @class */ (function () {
 
 })();
 
-PerfectGym = __webpack_exports__;
+var __webpack_export_target__ = (PerfectGym = typeof PerfectGym === "undefined" ? {} : PerfectGym);
+for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
+if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
 /******/ })()
 ;

@@ -223,6 +223,11 @@ export interface ClientPortalOptions {
      * Callback fired when dropdown closes on mobile mode.
      */
     onMobileDropdownClose?(): void;
+
+    /**
+     * Decides whether branding theme with provided identifier should be used.
+     */
+    brandingId?: number;
 }
 
 interface IConnectOptions {
@@ -562,12 +567,13 @@ export class ClientPortal {
         this._companyUrl = url;
 
         let defaultState = (options as any).defaultState || 'Profile';
+        
+        const branding = options && options.brandingId ? `&brandingId=${options.brandingId}` : '';
 
         let params = '?' + this._serializeParams(options.defaultStateParams) || '';
 
         iframeElement.src =
-            (options as any).forceUrl || url + mode + language + '#/' + defaultState + params;
-
+            (options as any).forceUrl || url + mode + language + branding + '#/' + defaultState + params;
         iframeElement.style.border = 'none';
         iframeElement.style.width = '1px';
         iframeElement.style.maxWidth = '100%';
