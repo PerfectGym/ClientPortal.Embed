@@ -18,7 +18,10 @@ module.exports = function (x, env) {
             path: path.resolve('./dist'),
             filename: prod ? '[name].min.js' : '[name].js',
             sourceMapFilename: prod ? '[name].min.js.map' : '[name].js.map',
-            library: 'PerfectGym',
+            library: {
+                name: 'PerfectGym',
+                type: 'assign-properties'
+              },
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js'],
