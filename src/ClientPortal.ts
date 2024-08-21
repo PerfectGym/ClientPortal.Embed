@@ -342,6 +342,7 @@ export class ClientPortal {
             {
                 checkOrigin: false,
                 warningTimeout: 15000,
+                license: "12ajjdewwwy-26rnhw2943-1s7g1u8ma0i"
             },
             this._element
         );

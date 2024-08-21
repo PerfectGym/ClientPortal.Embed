@@ -148,7 +148,7 @@ var ClientPortal = /** @class */ (function () {
         var iframe = iframeResize({
             checkOrigin: false,
             warningTimeout: 15000,
-			license: "12ajjdewwwy-26rnhw2943-1s7g1u8ma0i"
+            license: "12ajjdewwwy-26rnhw2943-1s7g1u8ma0i"
         }, this._element);
     }
     ClientPortal.prototype._onMessage = function (msg, options, event) {
