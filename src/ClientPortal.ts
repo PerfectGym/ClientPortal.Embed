@@ -1,4 +1,5 @@
 import './ClientPortal.less';
+import iFrameResize from '@iframe-resizer/parent';
 
 export interface ClientPortalStateInfo {
     auth: boolean;
@@ -246,7 +247,6 @@ interface IframeMessage {
 }
 
 let loadMaskEl: HTMLElement;
-let iframeResize = (window as any).iFrameResize;
 
 function addLoadMask() {
     if (loadMaskEl) return;
@@ -338,7 +338,7 @@ export class ClientPortal {
                 showLoadMask();
         }
 
-        let iframe = iframeResize(
+        iFrameResize(
             {
                 checkOrigin: false,
                 warningTimeout: 15000,
@@ -473,8 +473,6 @@ export class ClientPortal {
                 ) {
                     window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
                 }
-
-                if (data.toState.name == 'Auth.Login') this._forceResize();
 
                 if (!options.enableVirtualStates && data.isVirtual) break;
                 options.onStateChangeSuccess && options.onStateChangeSuccess(data);
@@ -622,13 +620,6 @@ export class ClientPortal {
 
             this._promiseResolveMap[id] = resolve;
         });
-    }
-    
-    private _forceResize() {
-        var element: any = this._element;
-
-        element.style.height = '';
-        element.iFrameResizer.resize();
     }
     
     private _setIFrameHeightToSpecificContent(height: string){

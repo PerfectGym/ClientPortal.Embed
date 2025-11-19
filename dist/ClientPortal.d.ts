@@ -216,7 +216,6 @@ export declare class ClientPortal {
     private _createIframe;
     private _serializeParams;
     private _sendData;
-    private _forceResize;
     private _setIFrameHeightToSpecificContent;
     goTo(state: string, params?: Object): Promise<unknown>;
     logout(): Promise<unknown>;

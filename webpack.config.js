@@ -3,10 +3,10 @@ var path = require('path');
 
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-module.exports = function (x, env) {
-    const prod = Object.values(env)[0].mode === 'production';
+module.exports = function (env) {
+    const prod = env && env.mode === 'production';
 
     return {
         target: 'web',
@@ -56,7 +56,7 @@ module.exports = function (x, env) {
         optimization: {
             minimizer: [
                 new TerserJSPlugin({}), 
-                new OptimizeCSSAssetsPlugin({})
+                new CssMinimizerPlugin({})
             ],
         },
     };
