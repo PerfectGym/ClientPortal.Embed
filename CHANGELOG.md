@@ -16,3 +16,8 @@ v1.7.0 (25.09.2019)
 
 Features: 
 - added `topOffset` option that improves floating navigation support
+
+v1.13.0 (19.11.2025)
+-------------------
+
+- Moved from iframe-resizer to @iframe-resizer/parent

@@ -46,7 +46,7 @@ At the end of `<head>` add:
 At the end of `<body>` tag add:
 ```html  
 
-<script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.5.7/index.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
 
 ```
@@ -83,7 +83,7 @@ Package can be installed via NPM.
 
 `npm install @perfectgym/client-portal`
 
-It requires [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer) as dependency.
+It requires [@iframe-resizer/parent](https://github.com/davidjbradshaw/iframe-resizer) as dependency.
 
 ### Usage
 
