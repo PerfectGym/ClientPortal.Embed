@@ -21,3 +21,9 @@ v1.13.0 (19.11.2025)
 -------------------
 
 - Moved from iframe-resizer to @iframe-resizer/parent
+
+v1.13.2 (21.11.2025)
+-------------------
+
+Bugfixes:
+- fixed issues with displaying iframe
