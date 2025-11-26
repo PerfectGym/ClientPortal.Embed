@@ -1,5 +1,4 @@
 import './ClientPortal.less';
-import iFrameResize from '@iframe-resizer/parent';
 
 export interface ClientPortalStateInfo {
     auth: boolean;
@@ -247,6 +246,7 @@ interface IframeMessage {
 }
 
 let loadMaskEl: HTMLElement;
+let iframeResize = (window as any).iframeResize;
 
 function addLoadMask() {
     if (loadMaskEl) return;
@@ -338,7 +338,7 @@ export class ClientPortal {
                 showLoadMask();
         }
 
-        iFrameResize(
+        iframeResize(
             {
                 checkOrigin: false,
                 warningTimeout: 15000,
