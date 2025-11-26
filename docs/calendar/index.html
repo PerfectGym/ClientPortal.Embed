@@ -48,6 +48,7 @@
             navigation: {
                 hide: true
             },
+            minHeight: '1020',
             defaultState: PerfectGym.ClientPortal.State.Classes
         };
 
@@ -65,8 +66,7 @@
         </div>
     </div>
 
-    <!-- I have a problem with including this library with webpack -->
-    <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.5.7/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@perfectgym/client-portal@latest/dist/ClientPortal.min.js"></script>
     <script type="text/javascript">
         window.onload = function () {
@@ -79,6 +79,7 @@
                 navigation: {
                     hide: true
                 },
+                minHeight: '1020',
                 defaultState: PerfectGym.ClientPortal.State.Classes
 
             };
